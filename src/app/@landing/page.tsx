@@ -31,7 +31,7 @@ const LandingPage = () => {
             </div>
 
             <Button size="lg">Create account</Button>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               By signing up, you agree to the{" "}
               <Link className="underline" href="/tos">
                 Terms of Service
