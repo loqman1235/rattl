@@ -1,17 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Libre_Franklin } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter-sans",
+const libreFranklin = Libre_Franklin({
+  variable: "--font-libre-franklin-sans",
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
-
-const instrument = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -30,16 +24,16 @@ export default function RootLayout({
   modal: React.ReactNode;
   children: React.ReactNode;
 }>) {
-  const session = {
-    user: {
-      username: "johndoe",
-    },
-  };
+  // const session = {
+  //   user: {
+  //     username: "johndoe",
+  //   },
+  // };
 
-  // const session = null;
+  const session = null;
 
   return (
-    <html lang="en" className={`${inter.variable} ${instrument.variable}`}>
+    <html lang="en" className={`${libreFranklin.variable}`}>
       <body className="antialiased">
         {session ? appSlot : landingSlot}
         {modal}
