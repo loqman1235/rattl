@@ -7,11 +7,11 @@ import { Button } from "@/components/ui/button";
 
 const LandingPage = () => {
   return (
-    <div className="max-w-5xl mx-auto min-h-screen flex md:flex-row flex-col items-center justify-center md:justify-between gap-10 p-10">
+    <div className="max-w-5xl mx-auto min-h-screen flex md:flex-row flex-col items-center justify-center md:justify-between gap-10">
       {/* BRAND */}
       <Image
         className="w-[120px] md:w-[300px] pointer-events-none select-none"
-        src="/logo_light.svg"
+        src="/logo_dark.svg"
         width={300}
         height={300}
         alt="Rattl"
@@ -56,8 +56,6 @@ const LandingPage = () => {
           </Button>
         </div>
       </div>
-
-      {/* FOOTER */}
     </div>
   );
 };
