@@ -20,13 +20,31 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
+  landing: landingSlot,
+  app: appSlot,
+  modal,
   children,
 }: Readonly<{
+  landing: React.ReactNode;
+  app: React.ReactNode;
+  modal: React.ReactNode;
   children: React.ReactNode;
 }>) {
+  const session = {
+    user: {
+      username: "johndoe",
+    },
+  };
+
+  // const session = null;
+
   return (
     <html lang="en" className={`${inter.variable} ${instrument.variable}`}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {session ? appSlot : landingSlot}
+        {modal}
+        {children}
+      </body>
     </html>
   );
 }
