@@ -34,7 +34,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${libreFranklin.variable}`}>
-      <body className="antialiased">
+      <body className="antialiased dark">
         {session ? appSlot : landingSlot}
         {modal}
         {children}
