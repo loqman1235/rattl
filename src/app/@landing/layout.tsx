@@ -1,8 +1,4 @@
 const LandingLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <main>
-      <div className="min-h-screen">{children}</div>
-    </main>
-  );
+  return <main className="max-w-5xl mx-auto">{children}</main>;
 };
 export default LandingLayout;
