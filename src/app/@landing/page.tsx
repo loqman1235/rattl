@@ -10,7 +10,7 @@ const LandingPage = () => {
     <div className="max-w-5xl mx-auto min-h-screen flex md:flex-row flex-col items-center justify-center md:justify-between gap-10 p-10">
       {/* BRAND */}
       <Image
-        className="w-[160px] md:w-[300px] pointer-events-none select-none"
+        className="w-[120px] md:w-[300px] pointer-events-none select-none"
         src="/logo_light.svg"
         width={300}
         height={300}
