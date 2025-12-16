@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Libre_Franklin } from "next/font/google";
 import "./globals.css";
+import { getSession } from "@/lib/auth/session";
+import { redirect } from "next/navigation";
+import { Toaster } from "@/components/ui/sonner";
+import { headers } from "next/headers";
 
 const libreFranklin = Libre_Franklin({
   variable: "--font-libre-franklin-sans",
@@ -13,7 +17,7 @@ export const metadata: Metadata = {
   description: "A social media website.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   landing: landingSlot,
   app: appSlot,
   modal,
@@ -24,20 +28,32 @@ export default function RootLayout({
   modal: React.ReactNode;
   children: React.ReactNode;
 }>) {
-  // const session = {
-  //   user: {
-  //     username: "johndoe",
-  //   },
-  // };
+  const session = await getSession();
+  const headersList = await headers();
+  const pathname = headersList.get("x-pathname") || "/";
 
-  const session = null;
+  console.log("🔍 Root Layout Check:", {
+    pathname,
+    hasSession: !!session,
+    username: session?.user?.username,
+  });
+
+  if (
+    session?.user &&
+    !session.user.username &&
+    !pathname.startsWith("/onboarding")
+  ) {
+    console.log("➡️ Redirecting to onboarding");
+    redirect("/onboarding/username");
+  }
 
   return (
     <html lang="en" className={`${libreFranklin.variable}`}>
-      <body className="antialiased ">
-        {session ? appSlot : landingSlot}
+      <body className="antialiased">
+        {session?.user ? appSlot : landingSlot}
         {modal}
         {children}
+        <Toaster position="top-center" />
       </body>
     </html>
   );
