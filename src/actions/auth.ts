@@ -8,11 +8,5 @@ export async function signOut() {
     headers: await headers(),
   });
 
-  (await cookies()).delete(
-    process.env.NODE_ENV === "production"
-      ? "__Secure-better-auth.session_token"
-      : "better-auth.session_token"
-  );
-
   redirect("/");
 }
