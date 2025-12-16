@@ -6,9 +6,11 @@ const AUTH_ROUTES = ["/auth/signin", "/auth/signup", "/auth/forgot-password"];
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  console.log("Next URL: ", request.cookies.get("better-auth.session_token"));
-
-  const sessionToken = request.cookies.get("better-auth.session_token");
+  const sessionToken = request.cookies.get(
+    process.env.NODE_ENV === "production"
+      ? "__Secure-better-auth.session_token"
+      : "better-auth.session_token"
+  );
   const isAuthenticated = !!sessionToken;
 
   const isAuthRoute = AUTH_ROUTES.some((route) => pathname.startsWith(route));
