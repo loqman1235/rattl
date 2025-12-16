@@ -1,61 +1,46 @@
-// import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { GoogleButton } from "./_components/google-button";
-import { GithubButton } from "./_components/github-button";
-import { Button } from "@/components/ui/button";
 
 const LandingPage = () => {
   return (
-    <div className="max-w-5xl mx-auto min-h-screen flex md:flex-row flex-col items-center justify-center md:justify-between gap-10">
+    <div className="max-w-[322px] mx-auto flex flex-col gap-5 items-center justify-center">
       {/* BRAND */}
-      <Image
-        className="w-[120px] md:w-[300px] pointer-events-none select-none"
-        src="/logo_dark.svg"
-        width={300}
-        height={300}
-        alt="Rattl"
-      />
-
-      <div className="flex flex-col gap-10 max-w-sm text-center md:text-start">
-        <div className="flex flex-col gap-5">
-          <h2 className="text-3xl font-bold">Join the Rattl community!</h2>
-          <div className="flex flex-col gap-3">
-            <GoogleButton />
-            <GithubButton />
-            {/* OR */}
-            <div className="flex items-center gap-2">
-              <div className="h-px w-full bg-border"></div>
-              <span className="text-foreground">OR</span>
-              <div className="h-px w-full bg-border"></div>
-            </div>
-
-            <Button size="lg">Create account</Button>
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              By signing up, you agree to the{" "}
-              <Link className="underline" href="/tos">
-                Terms of Service
-              </Link>{" "}
-              and{" "}
-              <Link className="underline" href="/privacy">
-                Privacy Policy
-              </Link>
-              , including{" "}
-              <Link className="underline" href="/cookies">
-                Cookie Use.
-              </Link>
-            </p>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-5">
-          <h3 className="text-lg font-bold">Already have an account?</h3>
-
-          <Button size="lg" variant="outline" asChild>
-            <Link href="/login">Sign in</Link>
-          </Button>
-        </div>
+      <div className="flex flex-col items-center justify-center gap-2">
+        <Image
+          src="/logo_dark.svg"
+          width={200}
+          height={200}
+          alt="Rattl"
+          priority
+        />
+        <h3 className="font-light text-lg tracking-wide text-foreground">
+          Connect. Share. Discover
+        </h3>
       </div>
+
+      {/* CTAs */}
+      <div className="flex flex-col gap-3 w-full">
+        <Button size="lg" asChild>
+          <Link href="/auth/signup">Create Account</Link>
+        </Button>
+        <Button size="lg" variant="secondary" asChild>
+          <Link href="/auth/signin">Sign In</Link>
+        </Button>
+      </div>
+
+      {/* TERMS */}
+      <p className="text-muted-foreground text-xs text-center leading-relaxed">
+        By continuing you agree to our{" "}
+        <Link className="underline" href="/tos">
+          Terms of Service
+        </Link>{" "}
+        and{" "}
+        <Link className="underline" href="/privacy">
+          Privacy Policy
+        </Link>
+        .
+      </p>
     </div>
   );
 };
