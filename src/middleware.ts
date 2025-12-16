@@ -3,14 +3,17 @@ import type { NextRequest } from "next/server";
 
 const AUTH_ROUTES = ["/auth/signin", "/auth/signup", "/auth/forgot-password"];
 
+// Helper to get session cookie name
+function getSessionCookieName() {
+  return process.env.NODE_ENV === "production"
+    ? "__Secure-better-auth.session_token"
+    : "better-auth.session_token";
+}
+
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  const sessionToken = request.cookies.get(
-    process.env.NODE_ENV === "production"
-      ? "__Secure-better-auth.session_token"
-      : "better-auth.session_token"
-  );
+  const sessionToken = request.cookies.get(getSessionCookieName());
   const isAuthenticated = !!sessionToken;
 
   const isAuthRoute = AUTH_ROUTES.some((route) => pathname.startsWith(route));
