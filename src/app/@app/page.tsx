@@ -10,6 +10,10 @@ const AppPage = async () => {
     redirect("/");
   }
 
+  if (!session.user.onboardingCompleted) {
+    redirect("/onboarding/username");
+  }
+
   // TODO: Work on main app
   return (
     <div className="container mx-auto p-4 flex flex-col gap-10">
