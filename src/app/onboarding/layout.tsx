@@ -20,7 +20,7 @@ export default async function OnboardingLayout({
     redirect("/");
   }
 
-  if (session.user.username) {
+  if (session.user.onboardingCompleted) {
     redirect("/");
   }
 
