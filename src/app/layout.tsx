@@ -32,15 +32,9 @@ export default async function RootLayout({
   const headersList = await headers();
   const pathname = headersList.get("x-pathname") || "/";
 
-  console.log("🔍 Root Layout Check:", {
-    pathname,
-    hasSession: !!session,
-    username: session?.user?.username,
-  });
-
   if (
     session?.user &&
-    !session.user.username &&
+    !session.user.onboardingCompleted &&
     !pathname.startsWith("/onboarding")
   ) {
     console.log("➡️ Redirecting to onboarding");
