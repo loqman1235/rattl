@@ -81,7 +81,7 @@ export async function updateInterests(interests: string[]) {
 
   await prisma.user.update({
     where: { id: session.user.id },
-    data: { interests },
+    data: { interests, onboardingCompleted: true },
   });
 
   revalidatePath("/");
