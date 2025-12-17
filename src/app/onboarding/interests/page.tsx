@@ -43,8 +43,8 @@ export default function InterestsPage() {
     });
   };
 
-  const handleSkip = () => {
-    router.push("/");
+  const handleSkip = async () => {
+    await updateInterests([]);
   };
 
   return (
