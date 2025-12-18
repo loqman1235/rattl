@@ -1,5 +1,4 @@
-import { signOut } from "@/actions/auth";
-import { Button } from "@/components/ui/button";
+import { SignOutButton } from "@/components/auth/signout-btn";
 import { getSession } from "@/lib/auth/session";
 import { redirect } from "next/navigation";
 
@@ -20,9 +19,7 @@ const AppPage = async () => {
       <h1 className="text-3xl font-bold">Feed</h1>
       <p>Welcome, @{session.user.username}!</p>
 
-      <form action={signOut}>
-        <Button type="submit">Sign out</Button>
-      </form>
+      <SignOutButton />
     </div>
   );
 };
