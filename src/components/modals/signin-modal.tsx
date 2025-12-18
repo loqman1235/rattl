@@ -7,7 +7,7 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { Loader2Icon, XIcon } from "lucide-react";
+import { XIcon } from "lucide-react";
 import { authClient } from "@/lib/auth/client";
 import { toast } from "sonner";
 import { SignIn, signInSchema } from "@/validators/auth";
@@ -122,9 +122,6 @@ export const SignInModal = () => {
             className="w-full"
             size="lg"
           >
-            {form.formState.isSubmitting && (
-              <Loader2Icon className="mr-2 size-4 animate-spin" />
-            )}
             {form.formState.isSubmitting ? "Signing in..." : "Sign in"}
           </Button>
 
