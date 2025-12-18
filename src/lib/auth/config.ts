@@ -104,7 +104,15 @@ export const auth = betterAuth({
   advanced: {
     cookiePrefix: "better-auth",
     useSecureCookies: process.env.NODE_ENV === "production",
+    defaultCookieAttributes: {
+      sameSite: "lax",
+      httpOnly: true,
+      path: "/",
+      secure: process.env.NODE_ENV === "production",
+    },
   },
+
+  secret: process.env.BETTER_AUTH_SECRET || process.env.AUTH_SECRET,
 
   trustedOrigins: [process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"],
 });
