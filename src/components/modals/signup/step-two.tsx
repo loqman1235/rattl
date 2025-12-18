@@ -4,6 +4,7 @@ import { UseFormReturn } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { FormField } from "./form-field";
 import { SignUpStepTwo } from "@/validators/auth";
+import { Loader2Icon } from "lucide-react";
 
 interface StepTwoProps {
   form: UseFormReturn<SignUpStepTwo>;
@@ -33,11 +34,14 @@ export function StepTwo({ form, onSubmit, onResend }: StepTwoProps) {
       </p>
 
       <Button
-        disabled={form.formState.isSubmitting || !form.formState.isValid}
+        disabled={form.formState.isSubmitting}
         type="submit"
         className="w-full"
         size="lg"
       >
+        {form.formState.isSubmitting && (
+          <Loader2Icon className="mr-2 size-4 animate-spin" />
+        )}
         {form.formState.isSubmitting ? "Verifying..." : "Next"}
       </Button>
     </form>

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FormField } from "./form-field";
 import { SignUpStepOne } from "@/validators/auth";
 import { useRouter } from "next/navigation";
+import { Loader2Icon } from "lucide-react";
 
 interface StepOneProps {
   form: UseFormReturn<SignUpStepOne>;
@@ -47,11 +48,14 @@ export function StepOne({ form, onSubmit }: StepOneProps) {
       </p>
 
       <Button
-        disabled={form.formState.isSubmitting || !form.formState.isValid}
+        disabled={form.formState.isSubmitting}
         className="w-full"
         size="lg"
       >
-        Next
+        {form.formState.isSubmitting && (
+          <Loader2Icon className="mr-2 size-4 animate-spin" />
+        )}
+        {form.formState.isSubmitting ? "Sending verification code..." : "Next"}
       </Button>
     </form>
   );
