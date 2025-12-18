@@ -13,7 +13,7 @@ export const SignOutButton = () => {
         window.location.href = "/";
       } else {
         console.error(error);
-        toast.error(error.message);
+        toast.error("Failed to sign out");
       }
     } catch (error) {
       console.error(error);
