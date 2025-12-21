@@ -5,6 +5,7 @@ import { getSession } from "@/lib/auth/session";
 import { redirect } from "next/navigation";
 import { Toaster } from "@/components/ui/sonner";
 import { headers } from "next/headers";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const libreFranklin = Libre_Franklin({
   variable: "--font-libre-franklin-sans",
@@ -42,12 +43,23 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="en" className={`${libreFranklin.variable}`}>
+    <html
+      lang="en"
+      className={`${libreFranklin.variable}`}
+      suppressHydrationWarning
+    >
       <body className="antialiased">
-        {session?.user ? appSlot : landingSlot}
-        {modal}
-        {children}
-        <Toaster position="top-center" />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {session?.user ? appSlot : landingSlot}
+          {modal}
+          {children}
+          <Toaster position="top-center" />
+        </ThemeProvider>
       </body>
     </html>
   );
