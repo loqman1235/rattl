@@ -1,10 +1,14 @@
 "use client";
 
 import { authClient } from "@/lib/auth/client";
-import { Button } from "../ui/button";
+import { LogOutIcon } from "lucide-react";
 import { toast } from "sonner";
 
-export const SignOutButton = () => {
+type SignOutButtonProps = {
+  username?: string | null;
+};
+
+export const SignOutButton = ({ username }: SignOutButtonProps) => {
   const handleSignOut = async () => {
     try {
       const { error } = await authClient.signOut();
@@ -22,8 +26,12 @@ export const SignOutButton = () => {
   };
 
   return (
-    <Button className="w-fit" onClick={handleSignOut}>
-      Sign out
-    </Button>
+    <button
+      className="w-full cursor-pointer flex items-center gap-2 p-3 hover:bg-destructive/10 hover:text-destructive transition-all duration-300 ease-in-out rounded-sm"
+      onClick={handleSignOut}
+    >
+      <LogOutIcon className="size-5" /> Sign out{" "}
+      {username ? `@${username}` : ""}
+    </button>
   );
 };
