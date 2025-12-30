@@ -13,7 +13,7 @@ const AppLayout = async ({ children }: { children: React.ReactNode }) => {
       <SidebarMenu />
 
       {/* Main content */}
-      <div className="flex-1 min-w-0 p-5">{children}</div>
+      <div className="flex-1 min-w-0">{children}</div>
 
       {/* Right sidebar */}
       <aside className="md:block hidden w-[var(--right-sidebar-width)] transition-all duration-300 ease-in-out border-l border-l-border p-5">
