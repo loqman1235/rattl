@@ -11,7 +11,7 @@ export const SidebarMenu = async () => {
 
   return (
     <aside className="w-[var(--sidebar-menu-width-mobile)] md:w-[var(--sidebar-menu-width-mobile)] lg:w-[var(--sidebar-menu-width)] transition-all duration-300 ease-in-out border-r border-r-border">
-      <div className="sticky top-5 flex flex-col gap-4 min-h-screen py-5">
+      <div className="sticky top-5 flex flex-col gap-4 min-h-screen pb-5">
         <div className="flex-1 flex flex-col gap-2">
           {/* LOGO */}
           <div className="px-9">
