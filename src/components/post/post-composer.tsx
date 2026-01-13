@@ -4,16 +4,43 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { ImageIcon, SmileIcon, MapPinIcon, BarChart3Icon } from "lucide-react";
+// import { ImageIcon, SmileIcon, MapPinIcon, BarChart3Icon } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { User } from "better-auth";
+import { Lineicons } from "@lineiconshq/react-lineicons";
+import {
+  GalleryStroke,
+  EmojiSmileStroke,
+  MapMarker5Stroke,
+  Locked2Solid,
+  UserMultiple4Solid,
+  Globe1Solid,
+  Globe1Stroke,
+  UserMultiple4Stroke,
+  Locked2Stroke,
+} from "@lineiconshq/free-icons";
+import { ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 
 interface PostComposerProps {
   user: User | null;
   initialHeight?: number;
+  isModal?: boolean;
 }
 
-export function PostComposer({ user, initialHeight }: PostComposerProps) {
+type Visibility = "everyone" | "followers" | "private";
+
+export function PostComposer({
+  user,
+  initialHeight,
+  isModal,
+}: PostComposerProps) {
+  const [visibility, setVisibility] = useState<Visibility>("everyone");
   const [content, setContent] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -35,55 +62,130 @@ export function PostComposer({ user, initialHeight }: PostComposerProps) {
 
   const isDisabled = !content.trim();
 
-  return (
-    // TODO: Remove border bottom after adding posts
-    <div className="flex gap-3 p-4">
-      {/* Avatar */}
-      <Avatar className="size-10 flex-shrink-0">
-        <AvatarImage src={user?.image || ""} />
-        <AvatarFallback>
-          <Image
-            src="/avatar_light.svg"
-            alt={user?.name || "User"}
-            width={40}
-            height={40}
-          />
-        </AvatarFallback>
-      </Avatar>
+  const visibilityOptions = {
+    everyone: { icon: Globe1Solid, label: "Everyone", color: "text-blue-500" },
+    followers: {
+      icon: UserMultiple4Solid,
+      label: "Followers",
+      color: "text-green-500",
+    },
+    private: {
+      icon: Locked2Solid,
+      label: "Private",
+      color: "text-orange-500",
+    },
+  };
 
-      {/* Content Area */}
-      <div className="flex-1 min-w-0">
-        {/* Textarea */}
-        <textarea
-          ref={textareaRef}
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          placeholder="What's in your mind?"
-          rows={1}
-          className="
+  const currentVisibility = visibilityOptions[visibility];
+
+  return (
+    <div className="flex flex-col">
+      <div className="flex gap-3 p-4 pb-0">
+        {/* Avatar */}
+        <Avatar className="size-10 flex-shrink-0">
+          <AvatarImage src={user?.image || ""} />
+          <AvatarFallback>
+            <Image
+              src="/avatar_light.svg"
+              alt={user?.name || "User"}
+              width={40}
+              height={40}
+            />
+          </AvatarFallback>
+        </Avatar>
+
+        {/* Content Area */}
+        <div className="flex-1 min-w-0">
+          {/* Textarea */}
+          <textarea
+            ref={textareaRef}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            placeholder="What's in your mind?"
+            rows={1}
+            className="
             w-full resize-none overflow-hidden
             bg-transparent border-none outline-none
             text-xl placeholder:text-muted-foreground
             focus:ring-0 focus:outline-none
             min-h-[24px] max-h-[400px]
           "
-          style={{
-            height: initialHeight ? `${initialHeight}px` : "auto",
-            lineHeight: "1.5",
-          }}
-        />
+            style={{
+              height: initialHeight ? `${initialHeight}px` : "auto",
+              lineHeight: "1.5",
+            }}
+          />
+        </div>
+      </div>
 
-        {/* Footer */}
-        <div className="flex items-center justify-between mt-3 pt-3 border-t">
-          {/* Left - Action Icons */}
-          <div className="flex items-center gap-1">
+      {/* Footer */}
+      <div
+        className={`flex flex-col p-4 pt-0  ${
+          isModal ? "!pl-4" : "!pl-[68px]"
+        }`}
+      >
+        {/* Post Visibility */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button className="inline-flex items-center gap-1.5 px-2 py-1 -ml-2 rounded-full text-xs font-medium bg-accent/10 text-accent transition-all w-fit cursor-pointer active:scale-95">
+              <Lineicons
+                icon={currentVisibility.icon}
+                className={`size-3.5 text-accent`}
+              />
+              <span>{currentVisibility.label}</span>
+              <ChevronDown className="size-3 text-accent" />
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start">
+            <DropdownMenuItem onClick={() => setVisibility("everyone")}>
+              <Lineicons
+                icon={Globe1Stroke}
+                className="size-5 text-muted-foreground mr-2"
+              />
+              <div className="flex flex-col">
+                <span className="font-medium">Everyone</span>
+                <span className="text-xs text-muted-foreground">
+                  Anyone can see & reply
+                </span>
+              </div>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setVisibility("followers")}>
+              <Lineicons
+                icon={UserMultiple4Stroke}
+                className="size-5 text-muted-foreground mr-2"
+              />
+              <div className="flex flex-col">
+                <span className="font-medium">Followers</span>
+                <span className="text-xs text-muted-foreground">
+                  Only your followers
+                </span>
+              </div>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setVisibility("private")}>
+              <Lineicons
+                icon={Locked2Stroke}
+                className="size-5 text-muted-foreground mr-2"
+              />
+              <div className="flex flex-col">
+                <span className="font-medium">Private</span>
+                <span className="text-xs text-muted-foreground">
+                  Only you can see
+                </span>
+              </div>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <span className="w-full bg-border h-[0.5px] my-4" />
+        {/* Left - Action Icons */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1 -ml-3">
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
-                  className="p-2 rounded-full hover:bg-primary/10 text-primary transition-colors cursor-pointer"
+                  className="p-2 rounded-full hover:bg-accent/20 text-accent transition-colors cursor-pointer"
                   aria-label="Add image"
                 >
-                  <ImageIcon className="size-5" />
+                  <Lineicons icon={GalleryStroke} size={20} strokeWidth={2} />
                 </button>
               </TooltipTrigger>
               <TooltipContent side="bottom" sideOffset={4}>
@@ -93,10 +195,14 @@ export function PostComposer({ user, initialHeight }: PostComposerProps) {
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
-                  className="p-2 rounded-full hover:bg-primary/10 text-primary transition-colors cursor-pointer"
+                  className="p-2 rounded-full hover:bg-accent/20 text-accent transition-colors cursor-pointer"
                   aria-label="Add emoji"
                 >
-                  <SmileIcon className="size-5" />
+                  <Lineicons
+                    icon={EmojiSmileStroke}
+                    size={20}
+                    strokeWidth={2}
+                  />
                 </button>
               </TooltipTrigger>
               <TooltipContent side="bottom" sideOffset={4}>
@@ -106,28 +212,18 @@ export function PostComposer({ user, initialHeight }: PostComposerProps) {
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
-                  className="p-2 rounded-full hover:bg-primary/10 text-primary transition-colors cursor-pointer"
+                  className="p-2 rounded-full hover:bg-accent/20 text-accent transition-colors cursor-pointer"
                   aria-label="Add location"
                 >
-                  <MapPinIcon className="size-5" />
+                  <Lineicons
+                    icon={MapMarker5Stroke}
+                    size={20}
+                    strokeWidth={2}
+                  />
                 </button>
               </TooltipTrigger>
               <TooltipContent side="bottom" sideOffset={4}>
                 <p>Location</p>
-              </TooltipContent>
-            </Tooltip>
-
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <button
-                  className="p-2 rounded-full hover:bg-primary/10 text-primary transition-colors cursor-pointer"
-                  aria-label="Add poll"
-                >
-                  <BarChart3Icon className="size-5" />
-                </button>
-              </TooltipTrigger>
-              <TooltipContent side="bottom" sideOffset={4}>
-                <p>Poll</p>
               </TooltipContent>
             </Tooltip>
           </div>

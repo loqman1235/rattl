@@ -17,8 +17,8 @@ export const ComposePostModal = ({ user }: ComposePostModalProps) => {
   };
   return (
     <Dialog open={true} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[600px] [&>button]:hidden !p-0 !gap-0">
-        <div className="flex items-center justify-between pt-4 pl-4 ">
+      <DialogContent className="sm:max-w-[576px] [&>button]:hidden !p-0 !gap-0">
+        <div className="flex items-center justify-between pt-4 pl-2 ">
           <DialogTitle className="sr-only" />
           <button
             className="rounded-full p-2 flex items-center justify-center hover:bg-secondary transition-all cursor-pointer"
@@ -28,7 +28,7 @@ export const ComposePostModal = ({ user }: ComposePostModalProps) => {
           </button>
         </div>
 
-        <PostComposer user={user} initialHeight={80} />
+        <PostComposer user={user} initialHeight={80} isModal />
       </DialogContent>
     </Dialog>
   );
