@@ -1,91 +1,75 @@
-import Image from "next/image";
-import { Avatar, AvatarFallback } from "../ui/avatar";
 import Link from "next/link";
-import {
-  BookmarkIcon,
-  HeartIcon,
-  MessageCircleIcon,
-  MoreHorizontalIcon,
-  RepeatIcon,
-  UploadIcon,
-} from "lucide-react";
+
+import { UserAvatar } from "../shared/user-avatar";
+import { PostHeader } from "./post-header";
+import { PostActions } from "./post-actions";
+import { PostContent } from "./post-content";
+import { ProfileHoverCard } from "../shared/profile-hover-card";
+import { user } from "@/data/user";
 
 export const PostCard = () => {
   return (
-    <Link
-      href="/"
-      className="flex gap-3 p-4 border-t border-t-border transition-all duration-300 ease-in-out hover:bg-muted/70"
-    >
+    <article className="flex gap-3 p-4 border-t border-t-border transition-all duration-300 ease-in-out hover:bg-muted/40">
       {/* AVATAR */}
-
       <div>
         <Link href="/loqmanedj">
-          <Avatar className="size-10 flex-shrink-0">
-            <AvatarFallback>
-              <Image
-                src="/avatar_light.svg"
-                alt="User"
-                width={40}
-                height={40}
-              />
-            </AvatarFallback>
-          </Avatar>
+          <ProfileHoverCard user={user}>
+            <UserAvatar url={null} />
+          </ProfileHoverCard>
         </Link>
       </div>
 
       {/* DETAILS */}
       <div className="flex-1 flex flex-col gap-2">
-        {/* INFO */}
-        <Link href="/" className="flex items-center gap-1 flex-wrap w-fit">
-          <h3 className="text-sm font-semibold leading-none text-foreground">
-            Loqmane Djefafla
-          </h3>
-          {/* HANDLER */}
-          <p className="text-sm text-muted-foreground">@loqmanedj</p>
-          <span className="text-sm text-muted-foreground">&bull;</span>
-          <p className="text-sm text-muted-foreground">15h</p>
-        </Link>
-        {/* POST CONTENT */}
-        <p className="leading-relaxed w-full">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
-          non fugit animi quidem necessitatibus possimus minima eveniet, officia
-          praesentium eum dignissimos aliquam fugiat nesciunt magnam libero
-          quibusdam voluptas, molestiae cupiditate?
-        </p>
-        {/* ACTIONS */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-5 md:gap-10">
-            {/* COMMENTS */}
-            <button className="flex items-center gap-2 text-muted-foreground cursor-pointer">
-              <MessageCircleIcon className="size-5" />
-              <span>122</span>
-            </button>
-            {/* RETWEET */}
-            <button className="flex items-center gap-2 text-muted-foreground cursor-pointer">
-              <RepeatIcon className="size-5" />
-              <span>220</span>
-            </button>
-
-            {/* LIKE */}
-            <button className="flex items-center gap-2 text-muted-foreground cursor-pointer">
-              <HeartIcon className="size-5" />
-              <span>20k</span>
-            </button>
-          </div>
-
-          <div className="flex items-center gap-5">
-            <button className="flex items-center gap-2 text-muted-foreground cursor-pointer">
-              <BookmarkIcon className="size-5" />
-            </button>
-            <button className="flex items-center gap-2 text-muted-foreground cursor-pointer">
-              <UploadIcon className="size-5" />
-            </button>
-            <button className="flex items-center gap-2 text-muted-foreground cursor-pointer">
-              <MoreHorizontalIcon className="size-5" />
-            </button>
-          </div>
-        </div>
+        {/* HEADER */}
+        <PostHeader />
+        <PostContent
+          post={{
+            id: "1",
+            createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2),
+            author: {
+              id: "1",
+              name: "Loqmane Djefafla",
+              username: "loqmanedj",
+              image: null,
+              isVerified: true,
+            },
+            stats: {
+              comments: 122,
+              reposts: 220,
+              likes: 20000,
+            },
+            isLiked: false,
+            isReposted: false,
+            isBookmarked: false,
+            content:
+              "Happy new year 2026 @loqmanedj \n #newyear #happynewyear ",
+            // media: [
+            //   {
+            //     url: "https://i.pinimg.com/736x/59/08/8a/59088ad849c8e7c9323a113f6598de67.jpg",
+            //     type: "image",
+            //     width: 1920,
+            //     height: 1080,
+            //   },
+            //   {
+            //     url: "https://i.ytimg.com/vi/iJdUYpaA4kc/maxresdefault.jpg",
+            //     type: "image",
+            //     width: 1920,
+            //     height: 1080,
+            //   },
+            //   // {
+            //   //   url: "https://www.adorama.com/alc/wp-content/uploads/2021/05/bird-wings-flying-feature.gif",
+            //   //   type: "gif",
+            //   //   width: 480,
+            //   //   height: 480,
+            //   // },
+            // ],
+          }}
+          truncate
+        />
+        {/* FOOTER  */}
+        <PostActions />
       </div>
-    </Link>
+    </article>
   );
 };
