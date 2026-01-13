@@ -1,8 +1,13 @@
 "use client";
-import { Moon, Sun, Monitor } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
+import Lineicons from "@lineiconshq/react-lineicons";
+import {
+  MonitorStroke,
+  MoonHalfRight5Stroke,
+  Sun1Stroke,
+} from "@lineiconshq/free-icons";
 
 export const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
@@ -23,9 +28,9 @@ export const ThemeToggle = () => {
   }
 
   const themes = [
-    { value: "light", label: "Light", icon: Sun },
-    { value: "dark", label: "Dark", icon: Moon },
-    { value: "system", label: "System", icon: Monitor },
+    { value: "light", label: "Light", icon: Sun1Stroke },
+    { value: "dark", label: "Dark", icon: MoonHalfRight5Stroke },
+    { value: "system", label: "System", icon: MonitorStroke },
   ];
   return (
     <div className="flex flex-col gap-1">
@@ -40,10 +45,15 @@ export const ThemeToggle = () => {
             className={`
               flex items-center gap-3 px-3 py-2 rounded-md
               transition-colors cursor-pointer text-left w-full
-              ${isActive ? "bg-accent" : "hover:bg-accent/50"}
+              ${isActive ? "bg-muted" : "hover:bg-muted/50"}
             `}
           >
-            <Icon className="size-4 text-primary" />
+            <Lineicons
+              className="size-5"
+              strokeWidth={2}
+              icon={Icon}
+              size={20}
+            />
             <span className="text-sm">{t.label}</span>
             {isActive && (
               <span className="ml-auto text-xs text-primary">✓</span>
