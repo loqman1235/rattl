@@ -4,7 +4,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { PencilIcon } from "lucide-react";
+import { Lineicons } from "@lineiconshq/react-lineicons";
+import { Pencil1Stroke } from "@lineiconshq/free-icons";
 import Link from "next/link";
 
 export const PostButton = () => {
@@ -24,12 +25,16 @@ export const PostButton = () => {
             asChild
           >
             <Link href="/compose/post">
-              <PencilIcon className="size-5" />
+              <Lineicons
+                className="size-5"
+                icon={Pencil1Stroke}
+                strokeWidth={2}
+              />
             </Link>
           </Button>
         </TooltipTrigger>
         <TooltipContent side="bottom" sideOffset={4}>
-          <p>Post</p>
+          <p>Compose</p>
         </TooltipContent>
       </Tooltip>
     </>
