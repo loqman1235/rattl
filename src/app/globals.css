@@ -7,8 +7,8 @@
   --surface: #fafafa;
   --muted: oklch(0.97 0 0);
   --border: oklch(0.922 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --accent: oklch(0.65482 0.15624 244.07);
+  --accent-foreground: oklch(0.985 0 0);
   --input: oklch(0.922 0 0);
   --input-foreground: #212529;
   --radius: 0.625rem;
@@ -39,6 +39,9 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
+  --brand-like: oklch(63.975% 0.2501 2.062); /* Deep Rose, not bright red */
+  --brand-repost: oklch(69.644% 0.15609 160.604); /* Sage Green */
+  --brand-comment: oklch(0.6 0.1 230); /* Steel Blue */
   /* Sizes */
   --sidebar-menu-width: 275px;
   --right-sidebar-width: 350px;
@@ -86,6 +89,10 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  --color-repost: var(--brand-repost);
+  --color-like: var(--brand-like);
+  --color-comment: var(--brand-comment);
 }
 
 html {
@@ -109,7 +116,7 @@ body {
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
+  --accent: oklch(0.65482 0.15624 244.07);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
@@ -128,6 +135,10 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  --brand-like: oklch(63.975% 0.2501 2.062);
+  --brand-repost: oklch(69.644% 0.15609 160.604);
+  --brand-comment: oklch(0.7 0.12 230);
 }
 
 @layer base {
