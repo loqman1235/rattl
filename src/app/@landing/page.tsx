@@ -8,7 +8,16 @@ const LandingPage = () => {
       {/* BRAND */}
       <div className="flex flex-col items-center justify-center gap-2">
         <Image
+          className="block dark:hidden"
           src="/logo_dark.svg"
+          width={200}
+          height={200}
+          alt="Rattl"
+          priority
+        />
+        <Image
+          className="hidden dark:block"
+          src="/logo_light.svg"
           width={200}
           height={200}
           alt="Rattl"
