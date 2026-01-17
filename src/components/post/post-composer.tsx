@@ -1,34 +1,34 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-// import { ImageIcon, SmileIcon, MapPinIcon, BarChart3Icon } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import { User } from "better-auth";
-import { Lineicons } from "@lineiconshq/react-lineicons";
-import {
-  GalleryStroke,
-  EmojiSmileStroke,
-  MapMarker5Stroke,
-  Locked2Solid,
-  UserMultiple4Solid,
-  Globe1Solid,
-  Globe1Stroke,
-  UserMultiple4Stroke,
-  Locked2Stroke,
-} from "@lineiconshq/free-icons";
-import { ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { AuthUser } from "@/lib/auth/config";
+import {
+  GlobeEuropeAfricaIcon as GlobeEuropeAfricaIconSolid,
+  LockClosedIcon as LockClosedIconSolid,
+  UsersIcon as UsersIconSolid,
+  ChevronDownIcon,
+} from "@heroicons/react/24/solid";
+
+import {
+  GlobeEuropeAfricaIcon,
+  LockClosedIcon,
+  UsersIcon,
+  PhotoIcon,
+  FaceSmileIcon,
+  GifIcon,
+} from "@heroicons/react/24/outline";
+import { UserAvatar } from "../shared/user-avatar";
 
 interface PostComposerProps {
-  user: User | null;
+  user: AuthUser | null;
   initialHeight?: number;
   isModal?: boolean;
 }
@@ -63,14 +63,18 @@ export function PostComposer({
   const isDisabled = !content.trim();
 
   const visibilityOptions = {
-    everyone: { icon: Globe1Solid, label: "Everyone", color: "text-blue-500" },
+    everyone: {
+      icon: GlobeEuropeAfricaIconSolid,
+      label: "Everyone",
+      color: "text-blue-500",
+    },
     followers: {
-      icon: UserMultiple4Solid,
+      icon: UsersIconSolid,
       label: "Followers",
       color: "text-green-500",
     },
     private: {
-      icon: Locked2Solid,
+      icon: LockClosedIconSolid,
       label: "Private",
       color: "text-orange-500",
     },
@@ -82,17 +86,7 @@ export function PostComposer({
     <div className="flex flex-col">
       <div className="flex gap-3 p-4 pb-0">
         {/* Avatar */}
-        <Avatar className="size-10 flex-shrink-0">
-          <AvatarImage src={user?.image || ""} />
-          <AvatarFallback>
-            <Image
-              src="/avatar_light.svg"
-              alt={user?.name || "User"}
-              width={40}
-              height={40}
-            />
-          </AvatarFallback>
-        </Avatar>
+        <UserAvatar url={user?.image} />
 
         {/* Content Area */}
         <div className="flex-1 min-w-0">
@@ -128,20 +122,14 @@ export function PostComposer({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button className="inline-flex items-center gap-1.5 px-2 py-1 -ml-2 rounded-full text-xs font-medium bg-accent/10 text-accent transition-all w-fit cursor-pointer active:scale-95">
-              <Lineicons
-                icon={currentVisibility.icon}
-                className={`size-3.5 text-accent`}
-              />
+              <currentVisibility.icon className="size-3" />
               <span>{currentVisibility.label}</span>
-              <ChevronDown className="size-3 text-accent" />
+              <ChevronDownIcon className="size-3 text-accent" />
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start">
             <DropdownMenuItem onClick={() => setVisibility("everyone")}>
-              <Lineicons
-                icon={Globe1Stroke}
-                className="size-5 text-muted-foreground mr-2"
-              />
+              <GlobeEuropeAfricaIcon className="size-5 text-muted-foreground mr-2" />
               <div className="flex flex-col">
                 <span className="font-medium">Everyone</span>
                 <span className="text-xs text-muted-foreground">
@@ -150,10 +138,7 @@ export function PostComposer({
               </div>
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => setVisibility("followers")}>
-              <Lineicons
-                icon={UserMultiple4Stroke}
-                className="size-5 text-muted-foreground mr-2"
-              />
+              <UsersIcon className="size-5 text-muted-foreground mr-2" />
               <div className="flex flex-col">
                 <span className="font-medium">Followers</span>
                 <span className="text-xs text-muted-foreground">
@@ -162,10 +147,7 @@ export function PostComposer({
               </div>
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => setVisibility("private")}>
-              <Lineicons
-                icon={Locked2Stroke}
-                className="size-5 text-muted-foreground mr-2"
-              />
+              <LockClosedIcon className="size-5 text-muted-foreground mr-2" />
               <div className="flex flex-col">
                 <span className="font-medium">Private</span>
                 <span className="text-xs text-muted-foreground">
@@ -178,52 +160,45 @@ export function PostComposer({
         <span className="w-full bg-border h-[0.5px] my-4" />
         {/* Left - Action Icons */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1 -ml-3">
+          <div className="flex items-center gap-1 -ml-2">
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
-                  className="p-2 rounded-full hover:bg-accent/20 text-accent transition-colors cursor-pointer"
+                  className="p-2 rounded-full hover:bg-primary/20 text-primary transition-colors cursor-pointer"
                   aria-label="Add image"
                 >
-                  <Lineicons icon={GalleryStroke} size={20} strokeWidth={2} />
+                  <PhotoIcon className="size-5 stroke-2" />
                 </button>
               </TooltipTrigger>
               <TooltipContent side="bottom" sideOffset={4}>
                 <p>Media</p>
               </TooltipContent>
             </Tooltip>
+
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
-                  className="p-2 rounded-full hover:bg-accent/20 text-accent transition-colors cursor-pointer"
-                  aria-label="Add emoji"
+                  className="p-2 rounded-full hover:bg-primary/20 text-primary transition-colors cursor-pointer"
+                  aria-label="Add GIF"
                 >
-                  <Lineicons
-                    icon={EmojiSmileStroke}
-                    size={20}
-                    strokeWidth={2}
-                  />
+                  <GifIcon className="size-5 stroke-2" />
                 </button>
               </TooltipTrigger>
               <TooltipContent side="bottom" sideOffset={4}>
-                <p>Emoji</p>
+                <p>GIF</p>
               </TooltipContent>
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
-                  className="p-2 rounded-full hover:bg-accent/20 text-accent transition-colors cursor-pointer"
-                  aria-label="Add location"
+                  className="p-2 rounded-full hover:bg-primary/20 text-primary transition-colors cursor-pointer"
+                  aria-label="Add emoji"
                 >
-                  <Lineicons
-                    icon={MapMarker5Stroke}
-                    size={20}
-                    strokeWidth={2}
-                  />
+                  <FaceSmileIcon className="size-5 stroke-2" />
                 </button>
               </TooltipTrigger>
               <TooltipContent side="bottom" sideOffset={4}>
-                <p>Location</p>
+                <p>Emoji</p>
               </TooltipContent>
             </Tooltip>
           </div>

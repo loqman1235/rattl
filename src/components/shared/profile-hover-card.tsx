@@ -8,16 +8,16 @@ import {
   HoverCardTrigger,
 } from "../ui/hover-card";
 import { UserAvatar } from "./user-avatar";
-import Image from "next/image";
 import { formatDistanceToNow } from "date-fns";
-import Lineicons from "@lineiconshq/react-lineicons";
-import {
-  MapMarker5Stroke,
-  CalendarDaysStroke,
-  Paperclip1Stroke,
-} from "@lineiconshq/free-icons";
 
-interface ProfileHoverCardProps {
+import { CheckBadgeIcon } from "@heroicons/react/24/solid";
+import {
+  MapPinIcon,
+  CalendarIcon,
+  LinkIcon,
+} from "@heroicons/react/24/outline";
+
+type ProfileHoverCardProps = {
   children: React.ReactNode;
   user: {
     id: string;
@@ -36,7 +36,7 @@ interface ProfileHoverCardProps {
     };
     isFollowing?: boolean;
   };
-}
+};
 
 export function ProfileHoverCard({ children, user }: ProfileHoverCardProps) {
   const formatCount = (count: number) => {
@@ -74,12 +74,7 @@ export function ProfileHoverCard({ children, user }: ProfileHoverCardProps) {
                   {user.name}
                 </h4>
                 {user.isVerified && (
-                  <Image
-                    src="/verified-badge.svg"
-                    alt="Verified"
-                    width={16}
-                    height={16}
-                  />
+                  <CheckBadgeIcon className="size-5 text-accent" />
                 )}
               </div>
               <p className=" text-muted-foreground">@{user.username}</p>
@@ -93,13 +88,13 @@ export function ProfileHoverCard({ children, user }: ProfileHoverCardProps) {
           <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
             {user.location && (
               <div className="flex items-center gap-1">
-                <Lineicons icon={MapMarker5Stroke} className="size-4" />
+                <MapPinIcon className="size-4" />
                 <span>{user.location}</span>
               </div>
             )}
             {user.website && (
               <div className="flex items-center gap-1">
-                <Lineicons icon={Paperclip1Stroke} className="size-4" />
+                <LinkIcon className="size-4" />
 
                 <a
                   href={user.website}
@@ -113,7 +108,7 @@ export function ProfileHoverCard({ children, user }: ProfileHoverCardProps) {
               </div>
             )}
             <div className="flex items-center gap-1">
-              <Lineicons icon={CalendarDaysStroke} className="size-4" />
+              <CalendarIcon className="size-4" />
 
               <span>
                 Joined{" "}

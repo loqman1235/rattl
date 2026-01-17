@@ -10,7 +10,7 @@ export const SidebarMenu = async () => {
   if (!user) return null;
 
   return (
-    <aside className="w-[var(--sidebar-menu-width-mobile)] md:w-[var(--sidebar-menu-width-mobile)] lg:w-[var(--sidebar-menu-width)] transition-all duration-300 ease-in-out border-r border-r-border">
+    <aside className="w-[var(--sidebar-menu-width)] hidden md:block transition-all duration-300 ease-in-out border-r border-r-border">
       <div className="sticky top-5 flex flex-col gap-4 min-h-screen pb-5">
         <div className="flex-1 flex flex-col gap-2">
           {/* LOGO */}
@@ -22,13 +22,13 @@ export const SidebarMenu = async () => {
           <SidebarMenuNav />
 
           {/* POST BUTTON */}
-          <div className="px-6 flex items-center justify-center">
+          <div className="px-8 flex items-center justify-center">
             <PostButton />
           </div>
         </div>
 
         {/* PROFILE BUTTON */}
-        <div className="px-3 md:px-6 mt-auto flex items-center justify-center w-full">
+        <div className="px-5 mt-auto flex items-center justify-center w-full ">
           <ProfileButton user={user} />
         </div>
       </div>

@@ -19,7 +19,7 @@ const FeedPage = async () => {
     <div className="pb-20">
       {/* HEADER */}
       <nav className="flex sticky top-0 z-10">
-        <button className="w-1/2 p-3 flex items-center justify-center border-b border-b-border bg-background/80 backdrop-blur-sm font-semibold hover:bg-secondary cursor-pointer text-primary transition-all duration-300 ease-in-out relative after:absolute after:bottom-0 after:w-[100px] after:h-1 after:bg-accent after:rounded-full after:transition-all after:duration-300 after:ease-in-out">
+        <button className="w-1/2 p-3 flex items-center justify-center border-b border-b-border bg-background/80 backdrop-blur-sm font-semibold hover:bg-secondary cursor-pointer text-foreground transition-all duration-300 ease-in-out relative after:absolute after:bottom-0 after:w-[100px] after:h-1 after:bg-accent after:rounded-full after:transition-all after:duration-300 after:ease-in-out">
           Discover
         </button>
         <button className="w-1/2 p-3 flex items-center justify-center border-b border-b-border bg-background/80 backdrop-blur-sm font-semibold hover:bg-secondary cursor-pointer text-muted-foreground transition-all duration-300 ease-in-out">

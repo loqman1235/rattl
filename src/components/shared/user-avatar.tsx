@@ -14,7 +14,7 @@ export const UserAvatar = ({ url, className }: UserAvatarProps) => {
         <AvatarImage src={url} />
       ) : (
         <AvatarFallback>
-          <Image src="/avatar_light.svg" alt="User" width={80} height={80} />
+          <Image src="/avatar.svg" alt="User" width={80} height={80} />
         </AvatarFallback>
       )}
     </Avatar>

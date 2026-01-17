@@ -1,13 +1,3 @@
-import {
-  Ban2Stroke,
-  Flag1Stroke,
-  MenuMeatballs1Solid,
-  Pencil1Stroke,
-  Trash3Stroke,
-  VolumeMuteStroke,
-} from "@lineiconshq/free-icons";
-import Lineicons from "@lineiconshq/react-lineicons";
-import Image from "next/image";
 import Link from "next/link";
 import {
   DropdownMenu,
@@ -23,33 +13,40 @@ import {
 } from "../ui/tooltip";
 import { ProfileHoverCard } from "../shared/profile-hover-card";
 import { user } from "@/data/user";
-// import { BotIcon } from "lucide-react";
+import {
+  CheckBadgeIcon,
+  EllipsisHorizontalIcon,
+} from "@heroicons/react/24/solid";
+
+import {
+  PencilSquareIcon,
+  FlagIcon,
+  TrashIcon,
+  SpeakerXMarkIcon,
+  NoSymbolIcon,
+} from "@heroicons/react/24/outline";
 
 export const PostHeader = () => {
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-start justify-between">
       <Link
         href="/loqmanedj"
         className="flex items-center gap-1 flex-wrap w-fit"
       >
         <ProfileHoverCard user={user}>
-          <div className="flex items-center gap-0.5">
-            <h3 className="text-sm font-semibold leading-none text-foreground hover:underline">
-              Loqmane Djefafla
-            </h3>
+          <div className="flex items-center gap-1">
+            <div className="flex items-center gap-0.5">
+              <h3 className="text-[15px] font-semibold leading-none text-foreground hover:underline">
+                Loqmane Djefafla
+              </h3>
 
-            {/*  VERIFIED ICON */}
-            <Image
-              src="/verified-badge.svg"
-              alt="Verified Business"
-              width={16}
-              height={16}
-              title="Verified"
-            />
+              {/*  VERIFIED ICON */}
+              <CheckBadgeIcon className="size-4 text-accent" />
+            </div>
             {/* HANDLER */}
-            <p className="text-sm text-muted-foreground">@loqmanedj</p>
-            <span className="text-sm text-muted-foreground">&bull;</span>
-            <p className="text-sm text-muted-foreground">15h</p>
+            <p className="text-[15px] text-muted-foreground">@loqmanedj</p>
+            <span className="text-[8px] text-muted-foreground">&bull;</span>
+            <p className="text-[15px] text-muted-foreground">15h</p>
           </div>
         </ProfileHoverCard>
       </Link>
@@ -59,12 +56,8 @@ export const PostHeader = () => {
           <DropdownMenu>
             <TooltipTrigger asChild>
               <DropdownMenuTrigger asChild>
-                <button className="flex items-center gap-1 text-muted-foreground cursor-pointer hover:bg-accent/20 hover:!text-accent p-2 rounded-full transition-all duration-300 ease-in-out focus:outline-none -mr-2">
-                  <Lineicons
-                    strokeWidth={2}
-                    icon={MenuMeatballs1Solid}
-                    size={20}
-                  />
+                <button className="flex items-center gap-1 text-muted-foreground cursor-pointer hover:bg-accent/20 hover:!text-accent p-2 rounded-full transition-all duration-300 ease-in-out focus:outline-none -mr-2 -mt-2">
+                  <EllipsisHorizontalIcon className="size-5 stroke-2" />
                 </button>
               </DropdownMenuTrigger>
             </TooltipTrigger>
@@ -72,60 +65,40 @@ export const PostHeader = () => {
 
             <DropdownMenuContent className="mr-2" align="end">
               <DropdownMenuItem>
-                <button className="flex items-center gap-1 cursor-pointer text-lg w-full">
-                  <Lineicons
-                    className="mr-1 size-5"
-                    icon={Pencil1Stroke}
-                    strokeWidth={2}
-                  />
+                <button className="flex items-center gap-2 cursor-pointer text-lg w-full">
+                  <PencilSquareIcon className="size-5" />
 
                   <span>Edit post</span>
                 </button>
               </DropdownMenuItem>
 
               <DropdownMenuItem>
-                <button className="flex items-center gap-1 cursor-pointer text-lg w-full text-destructive">
-                  <Lineicons
-                    className="mr-1 size-5 text-destructive"
-                    icon={Trash3Stroke}
-                    strokeWidth={2}
-                  />
+                <button className="flex items-center gap-2 cursor-pointer text-lg w-full text-destructive">
+                  <TrashIcon className="size-5" />
 
                   <span>Delete post</span>
                 </button>
               </DropdownMenuItem>
 
               <DropdownMenuItem>
-                <button className="flex items-center gap-1 cursor-pointer text-lg w-full">
-                  <Lineicons
-                    className="size-5"
-                    icon={VolumeMuteStroke}
-                    strokeWidth={2}
-                  />
+                <button className="flex items-center gap-2 cursor-pointer text-lg w-full">
+                  <SpeakerXMarkIcon className="size-5" />
 
                   <span>Mute @loqmanedj</span>
                 </button>
               </DropdownMenuItem>
 
               <DropdownMenuItem>
-                <button className="flex items-center gap-1 cursor-pointer text-lg w-full">
-                  <Lineicons
-                    className="mr-1 size-5"
-                    icon={Ban2Stroke}
-                    strokeWidth={2}
-                  />
+                <button className="flex items-center gap-2 cursor-pointer text-lg w-full">
+                  <NoSymbolIcon className="size-5" />
 
                   <span>Block @loqmanedj</span>
                 </button>
               </DropdownMenuItem>
 
               <DropdownMenuItem>
-                <button className="flex items-center gap-1 cursor-pointer text-lg w-full">
-                  <Lineicons
-                    className="mr-1 size-5"
-                    icon={Flag1Stroke}
-                    strokeWidth={2}
-                  />
+                <button className="flex items-center gap-2 cursor-pointer text-lg w-full">
+                  <FlagIcon className="size-5" />
 
                   <span>Report post</span>
                 </button>

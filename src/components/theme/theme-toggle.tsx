@@ -2,12 +2,14 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
-import Lineicons from "@lineiconshq/react-lineicons";
+
 import {
-  MonitorStroke,
-  MoonHalfRight5Stroke,
-  Sun1Stroke,
-} from "@lineiconshq/free-icons";
+  SunIcon,
+  MoonIcon,
+  ComputerDesktopIcon,
+} from "@heroicons/react/24/outline";
+
+import { CheckIcon } from "@heroicons/react/24/solid";
 
 export const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
@@ -28,9 +30,9 @@ export const ThemeToggle = () => {
   }
 
   const themes = [
-    { value: "light", label: "Light", icon: Sun1Stroke },
-    { value: "dark", label: "Dark", icon: MoonHalfRight5Stroke },
-    { value: "system", label: "System", icon: MonitorStroke },
+    { value: "light", label: "Light", icon: SunIcon },
+    { value: "dark", label: "Dark", icon: MoonIcon },
+    { value: "system", label: "System", icon: ComputerDesktopIcon },
   ];
   return (
     <div className="flex flex-col gap-1">
@@ -48,15 +50,12 @@ export const ThemeToggle = () => {
               ${isActive ? "bg-muted" : "hover:bg-muted/50"}
             `}
           >
-            <Lineicons
-              className="size-5"
-              strokeWidth={2}
-              icon={Icon}
-              size={20}
-            />
+            <Icon className="size-5 stroke-2" />
             <span className="text-sm">{t.label}</span>
             {isActive && (
-              <span className="ml-auto text-xs text-primary">✓</span>
+              <span className="ml-auto text-xs text-primary">
+                <CheckIcon className="size-4" />
+              </span>
             )}
           </button>
         );

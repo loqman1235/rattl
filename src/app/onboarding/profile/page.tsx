@@ -113,7 +113,7 @@ export default function ProfilePage() {
               <AvatarImage src={avatarPreview} />
               <AvatarFallback>
                 <Image
-                  src="/avatar_light.svg"
+                  src="/avatar.svg"
                   width={200}
                   height={200}
                   alt="Avatar"

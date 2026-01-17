@@ -1,8 +1,8 @@
 "use client";
 
 import { authClient } from "@/lib/auth/client";
-import { LogOutIcon } from "lucide-react";
 import { toast } from "sonner";
+import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/outline";
 
 type SignOutButtonProps = {
   username?: string | null;
@@ -30,7 +30,7 @@ export const SignOutButton = ({ username }: SignOutButtonProps) => {
       className="w-full cursor-pointer flex items-center gap-2 p-3 hover:bg-destructive/10 hover:text-destructive transition-all duration-300 ease-in-out rounded-sm"
       onClick={handleSignOut}
     >
-      <LogOutIcon className="size-5" /> Sign out{" "}
+      <ArrowLeftStartOnRectangleIcon className="size-5 stroke-2" /> Sign out{" "}
       {username ? `@${username}` : ""}
     </button>
   );

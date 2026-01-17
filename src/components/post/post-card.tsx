@@ -9,7 +9,7 @@ import { user } from "@/data/user";
 
 export const PostCard = () => {
   return (
-    <article className="flex gap-3 p-4 border-t border-t-border transition-all duration-300 ease-in-out hover:bg-muted/40">
+    <article className="flex gap-3 p-4 border-t border-t-border transition-all duration-300 ease-in-out hover:bg-secondary/40">
       {/* AVATAR */}
       <div>
         <Link href="/loqmanedj">
@@ -44,26 +44,26 @@ export const PostCard = () => {
             isBookmarked: false,
             content:
               "Happy new year 2026 @loqmanedj \n #newyear #happynewyear ",
-            // media: [
-            //   {
-            //     url: "https://i.pinimg.com/736x/59/08/8a/59088ad849c8e7c9323a113f6598de67.jpg",
-            //     type: "image",
-            //     width: 1920,
-            //     height: 1080,
-            //   },
-            //   {
-            //     url: "https://i.ytimg.com/vi/iJdUYpaA4kc/maxresdefault.jpg",
-            //     type: "image",
-            //     width: 1920,
-            //     height: 1080,
-            //   },
-            //   // {
-            //   //   url: "https://www.adorama.com/alc/wp-content/uploads/2021/05/bird-wings-flying-feature.gif",
-            //   //   type: "gif",
-            //   //   width: 480,
-            //   //   height: 480,
-            //   // },
-            // ],
+            media: [
+              // {
+              //   url: "https://i.pinimg.com/736x/59/08/8a/59088ad849c8e7c9323a113f6598de67.jpg",
+              //   type: "image",
+              //   width: 1920,
+              //   height: 1080,
+              // },
+              // {
+              //   url: "https://i.ytimg.com/vi/iJdUYpaA4kc/maxresdefault.jpg",
+              //   type: "image",
+              //   width: 1920,
+              //   height: 1080,
+              // },
+              // {
+              //   url: "https://www.adorama.com/alc/wp-content/uploads/2021/05/bird-wings-flying-feature.gif",
+              //   type: "gif",
+              //   width: 480,
+              //   height: 480,
+              // },
+            ],
           }}
           truncate
         />

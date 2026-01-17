@@ -3,10 +3,7 @@ import Link from "next/link";
 
 export const Brand = () => {
   return (
-    <Link
-      className="flex items-center justify-center lg:justify-start gap-2"
-      href="/"
-    >
+    <Link className="flex items-center justify-start gap-2" href="/">
       {/* ✅ Light mode logo (hidden in dark mode) */}
       <Image
         src="/rattl_dark.svg"

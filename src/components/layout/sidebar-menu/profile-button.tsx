@@ -1,6 +1,6 @@
 import { SignOutButton } from "@/components/auth/signout-btn";
+import { UserAvatar } from "@/components/shared/user-avatar";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,14 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { getCurrentUser } from "@/lib/auth/session";
-import {
-  MoreHorizontal,
-  Palette,
-  SettingsIcon,
-  UserCircleIcon,
-} from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 
 type ProfileButtonProps = {
   user: Awaited<ReturnType<typeof getCurrentUser>>;
@@ -32,25 +25,15 @@ export const ProfileButton = async ({ user }: ProfileButtonProps) => {
       hover:bg-secondary cursor-pointer mt-auto transition-all duration-300 ease-in-out
       focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0"
         >
-          <Avatar>
-            <AvatarImage src={user?.image || ""} />
-            <AvatarFallback>
-              <Image
-                src="/avatar_light.svg"
-                alt={user?.name || ""}
-                width={40}
-                height={40}
-              />
-            </AvatarFallback>
-          </Avatar>
-          <div className="flex-1 hidden lg:flex items-center justify-between">
+          <UserAvatar url={user?.image} />
+          <div className="flex-1 flex items-center justify-between">
             <div className="flex-1 text-left min-w-0">
               <p className="font-semibold text-sm truncate">{user?.name}</p>
               <p className="text-sm text-muted-foreground truncate">
                 @{user?.username}
               </p>
             </div>
-            <MoreHorizontal className="h-5 w-5 text-muted-foreground" />
+            <EllipsisHorizontalIcon className="size-5" />
           </div>
         </button>
       </DropdownMenuTrigger>
