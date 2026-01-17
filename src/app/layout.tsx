@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Libre_Franklin } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { getSession } from "@/lib/auth/session";
 import { redirect } from "next/navigation";
@@ -7,10 +7,10 @@ import { Toaster } from "@/components/ui/sonner";
 import { headers } from "next/headers";
 import { ThemeProvider } from "@/providers/theme-provider";
 
-const libreFranklin = Libre_Franklin({
-  variable: "--font-libre-franklin-sans",
+const inter = Inter({
+  variable: "--font-roboto-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -43,11 +43,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html
-      lang="en"
-      className={`${libreFranklin.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={`${inter.variable}`} suppressHydrationWarning>
       <body className="antialiased">
         <ThemeProvider
           attribute="class"
