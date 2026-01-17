@@ -4,10 +4,10 @@ import { XIcon } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "../ui/dialog";
 import { PostComposer } from "../post/post-composer";
 import { useRouter } from "next/navigation";
-import { User } from "better-auth";
+import { AuthUser } from "@/lib/auth/config";
 
 type ComposePostModalProps = {
-  user: User | null;
+  user: AuthUser;
 };
 
 export const ComposePostModal = ({ user }: ComposePostModalProps) => {
