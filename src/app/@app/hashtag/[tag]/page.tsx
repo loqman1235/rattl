@@ -1,7 +1,6 @@
 import { PostCard } from "@/components/post/post-card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeftStroke } from "@lineiconshq/free-icons";
-import Lineicons from "@lineiconshq/react-lineicons";
+import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 type HashtagPageProps = {
   params: { tag: string };
@@ -15,12 +14,7 @@ const HashtagPage = ({ params }: HashtagPageProps) => {
         <div className="flex items-center ">
           <Button size="icon-lg" variant="ghost" asChild>
             <Link href="/">
-              <Lineicons
-                className="size-5"
-                icon={ArrowLeftStroke}
-                size={24}
-                strokeWidth={2}
-              />
+              <ArrowLeftIcon className="size-5" />
             </Link>
           </Button>
           <h1 className="text-xl font-bold p-4">#{tag}</h1>
