@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Select,
   SelectContent,
@@ -11,7 +11,7 @@ import {
 import { FieldLabel } from "@/components/ui/field";
 
 type DateOfBirthInputProps = {
-  value?: string; // Format: "YYYY-MM-DD"
+  value?: string;
   onChange: (date: string) => void;
   error?: string;
 };
@@ -25,22 +25,39 @@ export const DateOfBirthInput = ({
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
 
-  // Parse initial value
+  // Track if component is initializing
+  const isInitialized = useRef(false);
+
   useEffect(() => {
-    if (value && value.includes("-")) {
+    if (!isInitialized.current && value && value.includes("-")) {
       const [y, m, d] = value.split("-");
       setYear(y);
-      setMonth(m);
-      setDay(d);
+      setMonth(parseInt(m, 10).toString());
+      setDay(parseInt(d, 10).toString());
+      isInitialized.current = true;
     }
   }, [value]);
 
-  // Update parent when any field changes
-  useEffect(() => {
-    if (day && month && year) {
-      onChange(`${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`);
+  const handleDayChange = (newDay: string) => {
+    setDay(newDay);
+    if (month && year) {
+      onChange(`${year}-${month.padStart(2, "0")}-${newDay.padStart(2, "0")}`);
     }
-  }, [day, month, year, onChange]);
+  };
+
+  const handleMonthChange = (newMonth: string) => {
+    setMonth(newMonth);
+    if (day && year) {
+      onChange(`${year}-${newMonth.padStart(2, "0")}-${day.padStart(2, "0")}`);
+    }
+  };
+
+  const handleYearChange = (newYear: string) => {
+    setYear(newYear);
+    if (day && month) {
+      onChange(`${newYear}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`);
+    }
+  };
 
   // Generate arrays
   const days = Array.from({ length: 31 }, (_, i) => i + 1);
@@ -62,13 +79,13 @@ export const DateOfBirthInput = ({
   const years = Array.from({ length: 100 }, (_, i) => currentYear - i);
 
   return (
-    <div className="space-y-2 w-full">
+    <div className="space-y-2">
       <FieldLabel>Date of Birth</FieldLabel>
-      <div className="grid grid-cols-[2fr_1fr_1.5fr] gap-2 w-full">
+      <div className="grid grid-cols-[2fr_1fr_1.5fr] gap-2">
         {/* Month */}
-        <Select value={month} onValueChange={setMonth}>
+        <Select value={month} onValueChange={handleMonthChange}>
           <SelectTrigger
-            className={`w-full py-4 ${error && !month ? "border-destructive" : ""}`}
+            className={error && !month ? "border-destructive" : ""}
           >
             <SelectValue placeholder="Month" />
           </SelectTrigger>
@@ -82,10 +99,8 @@ export const DateOfBirthInput = ({
         </Select>
 
         {/* Day */}
-        <Select value={day} onValueChange={setDay}>
-          <SelectTrigger
-            className={`w-full ${error && !month ? "border-destructive" : ""}`}
-          >
+        <Select value={day} onValueChange={handleDayChange}>
+          <SelectTrigger className={error && !day ? "border-destructive" : ""}>
             <SelectValue placeholder="Day" />
           </SelectTrigger>
           <SelectContent>
@@ -98,10 +113,8 @@ export const DateOfBirthInput = ({
         </Select>
 
         {/* Year */}
-        <Select value={year} onValueChange={setYear}>
-          <SelectTrigger
-            className={`w-full ${error && !month ? "border-destructive" : ""}`}
-          >
+        <Select value={year} onValueChange={handleYearChange}>
+          <SelectTrigger className={error && !year ? "border-destructive" : ""}>
             <SelectValue placeholder="Year" />
           </SelectTrigger>
           <SelectContent>
