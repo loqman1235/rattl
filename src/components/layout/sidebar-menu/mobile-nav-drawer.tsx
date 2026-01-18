@@ -19,9 +19,9 @@ export function MobileNavDrawer({ user, onClose }: MobileNavDrawerProps) {
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full max-h-screen overflow-hidden">
       {/* User Section */}
-      <div className="p-6 border-b">
+      <div className="p-6 border-b flex-shrink-0">
         <div className="flex items-center gap-3">
           <UserAvatar url={user?.image} />
           <div className="flex-1 min-w-0">
