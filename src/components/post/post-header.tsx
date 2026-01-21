@@ -12,7 +12,6 @@ import {
   TooltipTrigger,
 } from "../ui/tooltip";
 import { ProfileHoverCard } from "../shared/profile-hover-card";
-import { user } from "@/data/user";
 import {
   CheckBadgeIcon,
   EllipsisHorizontalIcon,
@@ -25,28 +24,40 @@ import {
   SpeakerXMarkIcon,
   NoSymbolIcon,
 } from "@heroicons/react/24/outline";
+import { Post } from "@/types/post";
+import { formatPostDate } from "@/lib/utils";
 
-export const PostHeader = () => {
+type PostHeaderProps = {
+  post: Post;
+};
+
+export const PostHeader = ({ post }: PostHeaderProps) => {
   return (
     <div className="flex items-start justify-between">
       <Link
         href="/loqmanedj"
         className="flex items-center gap-1 flex-wrap w-fit"
       >
-        <ProfileHoverCard user={user}>
+        <ProfileHoverCard user={post.author}>
           <div className="flex items-center gap-1">
             <div className="flex items-center gap-0.5">
-              <h3 className="text-[15px] font-bold leading-none text-foreground hover:underline">
-                John Doe
+              <h3 className="text-[15px] font-bold leading-none text-foreground hover:underline truncate">
+                {post.author.name}
               </h3>
 
               {/*  VERIFIED ICON */}
-              <CheckBadgeIcon className="size-4 text-accent" />
+              {post.author.isVerified && (
+                <CheckBadgeIcon className="size-4 text-accent" />
+              )}
             </div>
             {/* HANDLER */}
-            <p className="text-[15px] text-muted-foreground">@johndoe</p>
+            <p className="text-[15px] text-muted-foreground truncate">
+              {post.author.username}
+            </p>
             <span className="text-[8px] text-muted-foreground">&bull;</span>
-            <p className="text-[15px] text-muted-foreground">15h</p>
+            <p className="text-[15px] text-muted-foreground">
+              {formatPostDate(post.createdAt)}
+            </p>
           </div>
         </ProfileHoverCard>
       </Link>
