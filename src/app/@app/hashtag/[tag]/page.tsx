@@ -1,5 +1,6 @@
 import { PostCard } from "@/components/post/post-card";
 import { Button } from "@/components/ui/button";
+import { postsMockData } from "@/data/posts";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 type HashtagPageProps = {
@@ -22,11 +23,9 @@ const HashtagPage = ({ params }: HashtagPageProps) => {
       </div>
 
       {/* Posts with this hashtag */}
-      <PostCard />
-      <PostCard />
-      <PostCard />
-      <PostCard />
-      <PostCard />
+      {postsMockData.map((post) => (
+        <PostCard key={post.id} post={post} />
+      ))}
     </div>
   );
 };
