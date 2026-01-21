@@ -1,5 +1,6 @@
 import { PostCard } from "@/components/post/post-card";
 import { PostComposer } from "@/components/post/post-composer";
+import { postsMockData } from "@/data/posts";
 import { getSession } from "@/lib/auth/session";
 import { redirect } from "next/navigation";
 
@@ -27,14 +28,13 @@ const FeedPage = async () => {
         </button>
       </nav>
       {/* POST INPUT */}
+      {/* TODO: Show post input? */}
       <PostComposer user={session.user} />
       {/* FEED POSTS */}
-      <PostCard />
-      <PostCard />
-      <PostCard />
-      <PostCard />
-      <PostCard />
-      <PostCard />
+
+      {postsMockData.map((post) => (
+        <PostCard key={post.id} post={post} />
+      ))}
     </div>
   );
 };
