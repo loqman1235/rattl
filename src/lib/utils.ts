@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from "clsx";
+import { format } from "date-fns";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -92,3 +93,53 @@ export function parsePostContent(content: string) {
 
   return parts;
 }
+
+export const formatPostDate = (date: Date) => {
+  const now = new Date();
+  const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+  const diffInMinutes = Math.floor(diffInSeconds / 60);
+  const diffInHours = Math.floor(diffInSeconds / (60 * 60));
+
+  if (diffInSeconds < 60) {
+    return "just now";
+  }
+
+  if (diffInMinutes < 60) {
+    return `${diffInMinutes}m`;
+  }
+
+  if (diffInHours < 24) {
+    return `${diffInHours}h`;
+  }
+
+  const diffInDays = Math.floor(diffInHours / 24);
+
+  if (diffInDays < 7) {
+    return `${diffInDays}d`;
+  }
+
+  if (diffInDays < 30) {
+    const diffInWeeks = Math.floor(diffInDays / 7);
+    return `${diffInWeeks}w`;
+  }
+
+  if (diffInDays < 365) {
+    const diffInMonths = Math.floor(diffInDays / 30);
+    return `${diffInMonths}mo`;
+  }
+
+  // For very old posts, show full date
+  return format(date, "MMM d, yyyy");
+};
+
+export const formatCount = (count: number) => {
+  if (count >= 1000000) {
+    return (count / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+  }
+
+  if (count >= 1000) {
+    return (count / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+  }
+
+  return count.toString();
+};
