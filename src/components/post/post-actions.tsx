@@ -1,3 +1,4 @@
+import { formatCount } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import {
   ArrowPathRoundedSquareIcon,
@@ -6,8 +7,13 @@ import {
   BookmarkIcon,
   ArrowUpTrayIcon,
 } from "@heroicons/react/24/outline";
+import { Post } from "@/types/post";
 
-export const PostActions = () => {
+type PostActionsProps = {
+  post: Post;
+};
+
+export const PostActions = ({ post }: PostActionsProps) => {
   const buttonStyles =
     "flex items-center text-muted-foreground cursor-pointer group text-[15px]";
 
@@ -22,7 +28,7 @@ export const PostActions = () => {
                 <HeartIcon className="size-5 stroke-2 group-active:scale-95" />
               </span>
               <span className="group-hover:text-like transition-all duration-300 -ml-1">
-                265K
+                {formatCount(post.stats.likes)}
               </span>
             </button>
           </TooltipTrigger>
@@ -39,7 +45,7 @@ export const PostActions = () => {
                 <ArrowPathRoundedSquareIcon className="size-5 stroke-2" />
               </span>
               <span className="group-hover:text-repost transition-all duration-300 -ml-1">
-                220
+                {formatCount(post.stats.reposts)}
               </span>
             </button>
           </TooltipTrigger>
@@ -56,7 +62,7 @@ export const PostActions = () => {
                 <ChatBubbleOvalLeftIcon className="size-5 stroke-2" />
               </span>
               <span className="group-hover:text-accent transition-all duration-300 -ml-1">
-                122
+                {formatCount(post.stats.comments)}
               </span>
             </button>
           </TooltipTrigger>
