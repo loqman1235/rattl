@@ -56,7 +56,7 @@ export function MobileNav({ user }: MobileNavProps) {
               <Bars3Icon className="size-6 stroke-2" />
             </button>
           </SheetTrigger>
-          <SheetContent side="left" className="h-screen p-0">
+          <SheetContent side="left" className="p-0 h-full flex flex-col">
             <SheetTitle className="" />
             <MobileNavDrawer user={user} onClose={() => setIsOpen(false)} />
           </SheetContent>
