@@ -8,6 +8,16 @@ export interface Post {
     username: string;
     image: string | null;
     isVerified: boolean;
+    bio?: string;
+    location?: string;
+    website?: string;
+    createdAt: Date;
+    stats: {
+      followers: number;
+      following: number;
+      posts: number;
+    };
+    isFollowing?: boolean;
   };
   media?: PostMedia[];
   stats: {
