@@ -16,6 +16,7 @@ import {
   CalendarIcon,
   LinkIcon,
 } from "@heroicons/react/24/outline";
+import { formatCount } from "@/lib/utils";
 
 type ProfileHoverCardProps = {
   children: React.ReactNode;
@@ -39,12 +40,6 @@ type ProfileHoverCardProps = {
 };
 
 export function ProfileHoverCard({ children, user }: ProfileHoverCardProps) {
-  const formatCount = (count: number) => {
-    if (count >= 1000000) return `${(count / 1000000).toFixed(1)}M`;
-    if (count >= 1000) return `${(count / 1000).toFixed(1)}K`;
-    return count.toString();
-  };
-
   return (
     <HoverCard openDelay={300} closeDelay={200}>
       <HoverCardTrigger asChild>{children}</HoverCardTrigger>
