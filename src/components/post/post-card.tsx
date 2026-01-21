@@ -20,7 +20,7 @@ export const PostCard = () => {
       </div>
 
       {/* DETAILS */}
-      <div className="flex-1 flex flex-col gap-2">
+      <div className="flex-1 flex flex-col">
         {/* HEADER */}
         <PostHeader />
         <PostContent
@@ -29,8 +29,8 @@ export const PostCard = () => {
             createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2),
             author: {
               id: "1",
-              name: "Loqmane Djefafla",
-              username: "loqmanedj",
+              name: "John Doe",
+              username: "jondoe",
               image: null,
               isVerified: true,
             },
@@ -43,7 +43,7 @@ export const PostCard = () => {
             isReposted: false,
             isBookmarked: false,
             content:
-              "Happy new year 2026 @loqmanedj \n #newyear #happynewyear ",
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur est quam perspiciatis ipsam tempore alias, earum adipisci necessitatibus aut? Recusandae rem esse provident fugiat quo assumenda, reiciendis porro quisquam laborum ducimus ullam, blanditiis odio explicabo? Ratione officia nihil iusto possimus illo? #Officiis cupiditate, molestiae sapiente error beatae eius, quis magnam iusto unde praesentium soluta ullam perferendis tempore delectus minima. #Dolor.",
             media: [
               // {
               //   url: "https://i.pinimg.com/736x/59/08/8a/59088ad849c8e7c9323a113f6598de67.jpg",
@@ -65,7 +65,7 @@ export const PostCard = () => {
               // },
             ],
           }}
-          truncate
+          // truncate
         />
         {/* FOOTER  */}
         <PostActions />
