@@ -19,7 +19,7 @@ export function MobileNavDrawer({ user, onClose }: MobileNavDrawerProps) {
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col h-full max-h-screen overflow-hidden">
+    <div className="flex flex-col h-full overflow-hidden">
       {/* User Section */}
       <div className="p-6 border-b flex-shrink-0">
         <div className="flex items-center gap-3">
@@ -49,7 +49,7 @@ export function MobileNavDrawer({ user, onClose }: MobileNavDrawerProps) {
                   className={`
                     flex items-center gap-4 px-4 py-3 rounded-full
                     transition-colors hover:bg-secondary
-                    ${isActive && "font-semibold"}
+                    ${isActive && "font-bold"}
                   `}
                 >
                   {isActive ? (
