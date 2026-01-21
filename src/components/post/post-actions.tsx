@@ -9,7 +9,7 @@ import {
 
 export const PostActions = () => {
   const buttonStyles =
-    "flex items-center text-muted-foreground cursor-pointer group";
+    "flex items-center text-muted-foreground cursor-pointer group text-[15px]";
 
   return (
     <div className="flex items-center justify-between">
