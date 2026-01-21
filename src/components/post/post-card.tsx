@@ -5,16 +5,21 @@ import { PostHeader } from "./post-header";
 import { PostActions } from "./post-actions";
 import { PostContent } from "./post-content";
 import { ProfileHoverCard } from "../shared/profile-hover-card";
-import { user } from "@/data/user";
+import { Post } from "@/types/post";
+// import { user } from "@/data/user";
 
-export const PostCard = () => {
+type PostCardProps = {
+  post: Post;
+};
+
+export const PostCard = ({ post }: PostCardProps) => {
   return (
     <article className="flex gap-3 p-4 border-t border-t-border transition-all duration-300 ease-in-out hover:bg-secondary/40">
       {/* AVATAR */}
       <div>
-        <Link href="/loqmanedj">
-          <ProfileHoverCard user={user}>
-            <UserAvatar url={null} />
+        <Link href={`/${post.author.username}`}>
+          <ProfileHoverCard user={post.author}>
+            <UserAvatar url={post.author.image} />
           </ProfileHoverCard>
         </Link>
       </div>
@@ -22,53 +27,13 @@ export const PostCard = () => {
       {/* DETAILS */}
       <div className="flex-1 flex flex-col">
         {/* HEADER */}
-        <PostHeader />
+        <PostHeader post={post} />
         <PostContent
-          post={{
-            id: "1",
-            createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2),
-            author: {
-              id: "1",
-              name: "John Doe",
-              username: "jondoe",
-              image: null,
-              isVerified: true,
-            },
-            stats: {
-              comments: 122,
-              reposts: 220,
-              likes: 20000,
-            },
-            isLiked: false,
-            isReposted: false,
-            isBookmarked: false,
-            content:
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur est quam perspiciatis ipsam tempore alias, earum adipisci necessitatibus aut? Recusandae rem esse provident fugiat quo assumenda, reiciendis porro quisquam laborum ducimus ullam, blanditiis odio explicabo? Ratione officia nihil iusto possimus illo? #Officiis cupiditate, molestiae sapiente error beatae eius, quis magnam iusto unde praesentium soluta ullam perferendis tempore delectus minima. #Dolor.",
-            media: [
-              // {
-              //   url: "https://i.pinimg.com/736x/59/08/8a/59088ad849c8e7c9323a113f6598de67.jpg",
-              //   type: "image",
-              //   width: 1920,
-              //   height: 1080,
-              // },
-              // {
-              //   url: "https://i.ytimg.com/vi/iJdUYpaA4kc/maxresdefault.jpg",
-              //   type: "image",
-              //   width: 1920,
-              //   height: 1080,
-              // },
-              // {
-              //   url: "https://www.adorama.com/alc/wp-content/uploads/2021/05/bird-wings-flying-feature.gif",
-              //   type: "gif",
-              //   width: 480,
-              //   height: 480,
-              // },
-            ],
-          }}
+          post={post}
           // truncate
         />
         {/* FOOTER  */}
-        <PostActions />
+        <PostActions post={post} />
       </div>
     </article>
   );
