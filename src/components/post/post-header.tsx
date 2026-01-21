@@ -36,15 +36,15 @@ export const PostHeader = () => {
         <ProfileHoverCard user={user}>
           <div className="flex items-center gap-1">
             <div className="flex items-center gap-0.5">
-              <h3 className="text-[15px] font-semibold leading-none text-foreground hover:underline">
-                Loqmane Djefafla
+              <h3 className="text-[15px] font-bold leading-none text-foreground hover:underline">
+                John Doe
               </h3>
 
               {/*  VERIFIED ICON */}
               <CheckBadgeIcon className="size-4 text-accent" />
             </div>
             {/* HANDLER */}
-            <p className="text-[15px] text-muted-foreground">@loqmanedj</p>
+            <p className="text-[15px] text-muted-foreground">@johndoe</p>
             <span className="text-[8px] text-muted-foreground">&bull;</span>
             <p className="text-[15px] text-muted-foreground">15h</p>
           </div>
