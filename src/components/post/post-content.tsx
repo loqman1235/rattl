@@ -13,14 +13,14 @@ type PostContentProps = {
 
 export const PostContent = ({ post, truncate }: PostContentProps) => {
   const contentParts = parsePostContent(post.content);
-  const urlRegex = /(https?:\/\/[^\s]+)/g;
-  const links = post.content.match(urlRegex) || [];
+  // const urlRegex = /(https?:\/\/[^\s]+)/g;
+  // const links = post.content.match(urlRegex) || [];
   return (
     <div className="flex flex-col gap-3">
       {/* Text Content with Hashtags & Mentions */}
       {post.content && (
         <div
-          className={`leading-relaxed whitespace-pre-wrap break-words ${
+          className={`whitespace-pre-wrap break-words text-[15px] -mt-1 ${
             truncate ? "line-clamp-3" : ""
           }`}
         >
