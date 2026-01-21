@@ -219,12 +219,7 @@ export function PostComposer({
             )}
 
             {/* Post Button */}
-            <Button
-              className="!p-5"
-              onClick={handlePost}
-              disabled={isDisabled}
-              size="sm"
-            >
+            <Button onClick={handlePost} disabled={isDisabled}>
               Post
             </Button>
           </div>
