@@ -28,7 +28,7 @@ export const SidebarMenuNav = () => {
                 </span>
                 <span
                   className={`text-xl  ${
-                    isActive ? "font-semibold" : "font-normal"
+                    isActive ? "font-bold" : "font-normal"
                   }`}
                 >
                   {item.name}
