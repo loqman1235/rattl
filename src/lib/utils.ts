@@ -6,7 +6,9 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function parsePostContent(content: string) {
+export function parsePostContent(
+  content: string,
+): Array<{ type: string; value: string }> {
   // Regex patterns
   const hashtagRegex = /#[\w\u0590-\u05ff]+/g;
   const mentionRegex = /@[\w]+/g;
