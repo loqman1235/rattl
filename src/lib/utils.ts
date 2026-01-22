@@ -132,14 +132,9 @@ export const formatPostDate = (date: Date) => {
   return format(date, "MMM d, yyyy");
 };
 
-export const formatCount = (count: number) => {
-  if (count >= 1000000) {
-    return (count / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
-  }
-
-  if (count >= 1000) {
-    return (count / 1000).toFixed(1).replace(/\.0$/, "") + "K";
-  }
-
-  return count.toString();
+export const formatCount = (count: number): string => {
+  return new Intl.NumberFormat("en-US", {
+    notation: "compact",
+    compactDisplay: "short",
+  }).format(count);
 };
