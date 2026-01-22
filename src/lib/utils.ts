@@ -94,47 +94,65 @@ export function parsePostContent(content: string) {
   return parts;
 }
 
-export const formatPostDate = (date: Date) => {
+export const formatPostDate = (date: Date | null): string => {
+  if (date === null) {
+    throw new Error("Cannot format null date");
+  }
+
   const now = new Date();
   const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
   const diffInMinutes = Math.floor(diffInSeconds / 60);
   const diffInHours = Math.floor(diffInSeconds / (60 * 60));
 
-  if (diffInSeconds < 60) {
-    return "just now";
+  try {
+    if (diffInSeconds < 60) {
+      return "just now";
+    }
+
+    if (diffInMinutes < 60) {
+      return `${diffInMinutes}m`;
+    }
+
+    if (diffInHours < 24) {
+      return `${diffInHours}h`;
+    }
+
+    const diffInDays = Math.floor(diffInHours / 24);
+
+    if (diffInDays < 7) {
+      return `${diffInDays}d`;
+    }
+
+    if (diffInDays < 30) {
+      const diffInWeeks = Math.floor(diffInDays / 7);
+      return `${diffInWeeks}w`;
+    }
+
+    if (diffInDays < 365) {
+      const diffInMonths = Math.floor(diffInDays / 30);
+      return `${diffInMonths}mo`;
+    }
+
+    // For very old posts, show full date
+    return format(date, "MMM d, yyyy");
+  } catch (error) {
+    console.error("Error formatting post date:", error);
+    return "";
   }
-
-  if (diffInMinutes < 60) {
-    return `${diffInMinutes}m`;
-  }
-
-  if (diffInHours < 24) {
-    return `${diffInHours}h`;
-  }
-
-  const diffInDays = Math.floor(diffInHours / 24);
-
-  if (diffInDays < 7) {
-    return `${diffInDays}d`;
-  }
-
-  if (diffInDays < 30) {
-    const diffInWeeks = Math.floor(diffInDays / 7);
-    return `${diffInWeeks}w`;
-  }
-
-  if (diffInDays < 365) {
-    const diffInMonths = Math.floor(diffInDays / 30);
-    return `${diffInMonths}mo`;
-  }
-
-  // For very old posts, show full date
-  return format(date, "MMM d, yyyy");
 };
 
-export const formatCount = (count: number): string => {
-  return new Intl.NumberFormat("en-US", {
-    notation: "compact",
-    compactDisplay: "short",
-  }).format(count);
+export const formatCount = (count: number | null): string => {
+  if (count === null) {
+    throw new Error("Cannot format null count");
+  }
+
+  try {
+    return new Intl.NumberFormat("en-US", {
+      notation: "compact",
+      compactDisplay: "short",
+    }).format(count);
+  } catch (error) {
+    console.error("Error formatting count:", error);
+    return "";
+  }
 };
