@@ -4,13 +4,13 @@ export const postsMockData = [
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2),
     author: {
       id: "1",
-      name: "Alex Chen",
-      username: "techwithalex",
+      name: "Fatality Music",
+      username: "fatalitymusic",
       image: null,
       isVerified: true,
-      bio: "Building the future of productivity tools • AI Engineer • Founder of FocusFlow",
-      location: "San Francisco, CA",
-      website: "https://alexchen.dev",
+      bio: "Music producer and beatmaker",
+      location: "Algeria",
+      website: "https://fatalitymusic.com",
       createdAt: new Date("2020-03-15"),
       stats: {
         followers: 125000,
@@ -27,9 +27,13 @@ export const postsMockData = [
     isLiked: false,
     isReposted: false,
     isBookmarked: false,
-    content:
-      "Just launched my new AI productivity app! After 6 months of coding, it feels amazing to ship something that actually helps people focus better. Early access available for the first 100 signups. #Tech #AI #Productivity #Startup",
-    media: [],
+    content: "I'll be uploading beats soon! #FatalityMusic #FinishHim",
+    media: [
+      {
+        type: "image",
+        url: "https://images.unsplash.com/photo-1560746062-c5bdb4093a7b?q=80&w=876&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      },
+    ],
   },
   {
     id: "2",
@@ -53,15 +57,24 @@ export const postsMockData = [
     },
     stats: {
       comments: 89,
-      reposts: 45,
-      likes: 1200,
+      reposts: 12584,
+      likes: 50000,
     },
     isLiked: true,
     isReposted: false,
     isBookmarked: true,
     content:
-      "Watching sunrise over the Himalayas was worth every step of the 5-day trek. The mountains don't care about your deadlines or emails. Nature reminds you what really matters. #Travel #Himalayas #Adventure #Nature",
-    media: [],
+      "Just got back from an incredible 5-day trek in the Himalayas. Being surrounded by nature's beauty was a great reminder of what truly matters. #Travel #Himalayas #Adventure #Nature",
+    media: [
+      {
+        type: "image",
+        url: "https://images.unsplash.com/photo-1584395631446-e41b0fc3f68d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+      },
+      {
+        type: "image",
+        url: "https://images.unsplash.com/photo-1573331343892-976a013b7020?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      },
+    ],
   },
   {
     id: "3",
