@@ -52,7 +52,7 @@ export const PostHeader = ({ post }: PostHeaderProps) => {
             </div>
             {/* HANDLER */}
             <p className="text-[15px] text-muted-foreground truncate">
-              {post.author.username}
+              @{post.author.username}
             </p>
             <span className="text-[8px] text-muted-foreground">&bull;</span>
             <p className="text-[15px] text-muted-foreground">
