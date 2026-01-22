@@ -1,4 +1,6 @@
-export const postsMockData = [
+import { Post } from "@/types/post";
+
+export const postsMockData: Post[] = [
   {
     id: "1",
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2),
@@ -32,6 +34,9 @@ export const postsMockData = [
       {
         type: "image",
         url: "https://images.unsplash.com/photo-1560746062-c5bdb4093a7b?q=80&w=876&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        width: 1080,
+        height: 1080,
+        alt: "Image 1",
       },
     ],
   },
@@ -69,10 +74,16 @@ export const postsMockData = [
       {
         type: "image",
         url: "https://images.unsplash.com/photo-1584395631446-e41b0fc3f68d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+        width: 1080,
+        height: 1080,
+        alt: "Image 2",
       },
       {
         type: "image",
         url: "https://images.unsplash.com/photo-1573331343892-976a013b7020?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        width: 1080,
+        height: 1080,
+        alt: "Image 3",
       },
     ],
   },
