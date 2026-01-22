@@ -72,7 +72,11 @@ export const PostContent = ({ post, truncate }: PostContentProps) => {
       )}
 
       {/* Media */}
-      {post.media && post.media.length > 0 && <PostMedia media={post.media} />}
+      {post.media && post.media.length > 0 && (
+        <div className="mb-2">
+          <PostMedia media={post.media} />
+        </div>
+      )}
     </div>
   );
 };
