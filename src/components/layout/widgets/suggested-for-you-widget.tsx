@@ -38,9 +38,9 @@ const suggestedUsers = [
   },
 ];
 
-export const WhoToFollowWidget = () => {
+export const SuggestedForYouWidget = () => {
   return (
-    <Widget title="Who to follow" href="/explore/people">
+    <Widget title="Suggested for you" href="/explore/people">
       {suggestedUsers.map((user) => (
         <UserCard key={user.id} user={user} />
       ))}

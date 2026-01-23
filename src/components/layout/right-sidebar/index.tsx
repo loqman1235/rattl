@@ -1,7 +1,7 @@
 import { SearchBar } from "./search-bar";
 import { PopularWidget } from "../widgets/popular-widget";
-import { WhoToFollowWidget } from "../widgets/who-to-follow-widget";
 import { FooterWidget } from "../widgets/footer-widget";
+import { SuggestedForYouWidget } from "../widgets/suggested-for-you-widget";
 
 export const RightSidebar = () => {
   return (
@@ -12,7 +12,7 @@ export const RightSidebar = () => {
         <PopularWidget />
 
         <div className="sticky top-[80px] flex flex-col gap-4 items-start">
-          <WhoToFollowWidget />
+          <SuggestedForYouWidget />
           <FooterWidget />
         </div>
       </div>
