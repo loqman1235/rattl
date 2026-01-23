@@ -8,13 +8,13 @@ type WidgetProps = {
 
 export const Widget = ({ title, href, children }: WidgetProps) => {
   return (
-    <div className="flex flex-col border border-border rounded-2xl overflow-hidden">
+    <div className="flex flex-col border border-border rounded-2xl overflow-hidden bg-background w-full">
       {/* Header */}
       <div className="flex items-center justify-between p-4">
         <h2 className="text-xl font-bold flex items-center gap-2">{title}</h2>
         {href && (
           <Link href={href} className="text-sm text-accent hover:underline">
-            Show all
+            See all
           </Link>
         )}
       </div>

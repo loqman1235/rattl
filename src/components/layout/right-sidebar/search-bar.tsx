@@ -21,7 +21,10 @@ export const SearchBar = () => {
   };
 
   return (
-    <form onSubmit={handleSearch} className="relative">
+    <form
+      onSubmit={handleSearch}
+      className="sticky top-0 p-5 bg-background z-20"
+    >
       <div className="relative">
         <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-foreground z-10" />
         <Input

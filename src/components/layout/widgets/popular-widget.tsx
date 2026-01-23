@@ -31,10 +31,12 @@ export const PopularWidget = () => {
         <Link
           key={topic.id}
           href={`/search?q=${encodeURIComponent(topic.title)}`}
-          className="flex items-center justify-between hover:bg-secondary/40 transition-colors px-4 py-3"
+          className="flex items-center justify-between hover:bg-secondary/40 transition-colors px-4 py-3 group"
         >
           <div className="flex flex-col gap-0.5">
-            <p className="font-semibold text-sm truncate">{topic.title}</p>
+            <p className="font-semibold text-sm truncate group-hover:underline">
+              {topic.title}
+            </p>
             <p className="text-sm text-muted-foreground">
               {topic.postsCount} posts
             </p>
@@ -49,31 +51,32 @@ export const PopularWidget = () => {
 };
 
 function Sparkline({ data }: { data: number[] }) {
-  const width = 40;
-  const height = 24;
+  const width = 48;
+  const height = 28;
   const padding = 2;
 
   const max = Math.max(...data);
   const min = Math.min(...data);
+  const range = max - min || 1;
 
   const points = data
     .map((value, index) => {
       const x = (index / (data.length - 1)) * (width - padding * 2) + padding;
       const y =
-        height -
-        padding -
-        ((value - min) / (max - min || 1)) * (height - padding * 2);
+        height - padding - ((value - min) / range) * (height - padding * 2);
       return `${x},${y}`;
     })
     .join(" ");
 
   return (
-    <svg width={width} height={height} className="overflow-visible">
+    <svg width={width} height={height} className="flex-shrink-0">
       <polyline
         points={points}
         fill="none"
         stroke="currentColor"
-        strokeWidth="1"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         className="text-accent"
       />
     </svg>
