@@ -9,6 +9,7 @@ import { SignOutButton } from "@/components/auth/signout-btn";
 import { sidebarMenuLinks } from "@/data/sidebar-menu-links";
 import { AuthUser } from "@/lib/auth/config";
 import { UserAvatar } from "@/components/shared/user-avatar";
+import { getProfileHref, isProfileActive } from "@/lib/utils";
 
 interface MobileNavDrawerProps {
   user: AuthUser;
@@ -37,9 +38,12 @@ export function MobileNavDrawer({ user, onClose }: MobileNavDrawerProps) {
       <nav className="flex-1 overflow-y-auto p-4">
         <ul className="space-y-1">
           {sidebarMenuLinks.map((item) => {
-            const isActive = pathname === item.href;
-            const href =
-              item.href === "/profile" ? `/${user.username}` : item.href;
+            const isActive = isProfileActive(
+              pathname,
+              item.href,
+              user.username,
+            );
+            const href = getProfileHref(item.href, user.username);
 
             return (
               <li key={item.name}>
