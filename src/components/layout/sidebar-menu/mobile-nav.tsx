@@ -13,6 +13,7 @@ import { MobileNavDrawer } from "./mobile-nav-drawer";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { AuthUser } from "@/lib/auth/config";
+import { getProfileHref, isProfileActive } from "@/lib/utils";
 
 interface MobileNavProps {
   user: AuthUser;
@@ -27,13 +28,14 @@ export function MobileNav({ user }: MobileNavProps) {
       <div className="flex items-center justify-around h-16">
         {/* Quick access icons */}
         {mobileNavLinks.map((item) => {
-          const isActive = pathname === item.href;
+          const isActive = isProfileActive(pathname, item.href, user.username);
+          const href = getProfileHref(item.href, user.username);
           const Icon = item.icon;
 
           return (
             <Link
               key={item.name}
-              href={item.href}
+              href={href}
               className="flex flex-col items-center justify-center flex-1 h-full relative"
             >
               {isActive ? (
