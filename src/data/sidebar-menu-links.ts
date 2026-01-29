@@ -4,7 +4,7 @@ import {
   BellIcon,
   EnvelopeIcon,
   BookmarkIcon,
-  UserCircleIcon,
+  UserIcon,
   Cog6ToothIcon,
 } from "@heroicons/react/24/outline";
 import {
@@ -13,14 +13,14 @@ import {
   BellIcon as BellIconSolid,
   EnvelopeIcon as EnvelopeIconSolid,
   BookmarkIcon as BookmarkIconSolid,
-  UserCircleIcon as UserCircleIconSolid,
+  UserIcon as UserIconSolid,
   Cog6ToothIcon as Cog6ToothIconSolid,
 } from "@heroicons/react/24/solid";
 
 export const sidebarMenuLinks = [
   {
     name: "Home",
-    href: "/",
+    href: "/home",
     icon: HomeIcon,
     activeIcon: HomeIconSolid,
   },
@@ -51,8 +51,8 @@ export const sidebarMenuLinks = [
   {
     name: "Profile",
     href: "/profile",
-    icon: UserCircleIcon,
-    activeIcon: UserCircleIconSolid,
+    icon: UserIcon,
+    activeIcon: UserIconSolid,
   },
   {
     name: "Settings",
@@ -85,7 +85,7 @@ export const mobileNavLinks = [
   {
     name: "Profile",
     href: "/profile",
-    icon: UserCircleIcon,
-    activeIcon: UserCircleIconSolid,
+    icon: UserIcon,
+    activeIcon: UserIconSolid,
   },
 ] as const;
