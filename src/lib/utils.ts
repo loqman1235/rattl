@@ -158,3 +158,25 @@ export const formatCount = (count: number | null): string => {
     return "";
   }
 };
+
+export const isProfileActive = (
+  pathname: string,
+  itemHref: string,
+  currentUsername?: string | null,
+): boolean => {
+  if (itemHref !== "/profile" || !currentUsername) {
+    return pathname === itemHref;
+  }
+
+  return pathname.startsWith("/profile") || pathname === `/${currentUsername}`;
+};
+
+export const getProfileHref = (
+  itemHref: string,
+  currentUsername?: string | null,
+): string => {
+  if (itemHref === "/profile" && currentUsername) {
+    return `/${currentUsername}`;
+  }
+  return itemHref;
+};
