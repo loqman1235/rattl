@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { isReservedRoute } from "@/config/routes";
 
 const AUTH_ROUTES = ["/auth/signin", "/auth/signup", "/auth/forgot-password"];
+
 const PUBLIC_ROUTES = [
   "/tos",
   "/privacy",
@@ -21,29 +23,43 @@ function getSessionCookieName() {
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-
   const sessionToken = request.cookies.get(getSessionCookieName());
   const isAuthenticated = !!sessionToken;
 
   const isAuthRoute = AUTH_ROUTES.some((route) => pathname.startsWith(route));
   const isPublicRoute = PUBLIC_ROUTES.some((route) =>
-    pathname.startsWith(route)
+    pathname.startsWith(route),
   );
   const isRootPath = pathname === "/";
 
-  // // Prevents authenticated users from accessing auth routes
-  if (isAuthenticated && isAuthRoute) {
-    return NextResponse.redirect(new URL("/", request.url));
+  // 1. Redirect logged-in users away from Landing and Auth pages to Home
+  if (isAuthenticated && (isRootPath || isAuthRoute)) {
+    return NextResponse.redirect(new URL("/home", request.url));
   }
 
-  // If not authenticated and not on auth route and not on root path and not on public route redirect to root
-  if (!isAuthenticated && !isAuthRoute && !isRootPath && !isPublicRoute) {
-    return NextResponse.redirect(new URL("/", request.url));
+  // 2. Handle potential username routes (single segment paths)
+  const pathSegments = pathname.split("/").filter(Boolean);
+  const isUsernamePath = pathSegments.length === 1 && !pathname.includes(".");
+
+  if (isUsernamePath) {
+    const firstSegment = pathSegments[0];
+
+    // If it's a reserved route, let it through normally
+    if (isReservedRoute(firstSegment)) {
+      return NextResponse.next();
+    }
+
+    // If it's a public route, let it through
+    if (isPublicRoute) {
+      return NextResponse.next();
+    }
+
+    // Otherwise, it's potentially a username - let Next.js handle it
+    // The [username] route will determine if the user exists
+    return NextResponse.next();
   }
 
-  const response = NextResponse.next();
-  response.headers.set("x-pathname", pathname);
-  return response;
+  return NextResponse.next();
 }
 
 export const config = {
