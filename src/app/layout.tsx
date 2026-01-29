@@ -22,8 +22,6 @@ export default async function RootLayout({
   modal,
   children,
 }: Readonly<{
-  landing: React.ReactNode;
-  app: React.ReactNode;
   modal: React.ReactNode;
   children: React.ReactNode;
 }>) {
