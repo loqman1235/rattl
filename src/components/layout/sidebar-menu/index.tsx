@@ -19,7 +19,7 @@ export const SidebarMenu = async () => {
           </div>
 
           {/* NAVIGATION */}
-          <SidebarMenuNav />
+          <SidebarMenuNav currentUsername={user.username} />
 
           {/* POST BUTTON */}
           <div className="px-8 flex items-center justify-center">
