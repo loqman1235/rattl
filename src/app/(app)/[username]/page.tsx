@@ -1,4 +1,5 @@
 import { RESERVED_ROUTES } from "@/config/routes";
+import { notFound } from "next/navigation";
 
 type ProfilePageProps = {
   params: Promise<{
@@ -10,7 +11,7 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
   const { username } = await params;
 
   if (RESERVED_ROUTES.has(username.toLowerCase())) {
-    return <div>404 Not Found</div>;
+    return notFound();
   }
 
   return <div>ProfilePage {username}</div>;
