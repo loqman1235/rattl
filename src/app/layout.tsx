@@ -19,8 +19,6 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({
-  landing: landingSlot,
-  app: appSlot,
   modal,
   children,
 }: Readonly<{
@@ -51,7 +49,6 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {session?.user ? appSlot : landingSlot}
           {modal}
           {children}
           <Toaster position="top-center" />
